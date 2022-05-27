@@ -1,15 +1,7 @@
-# Basic Sample Hardhat Project
+# DCA
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+Project built for a hackathon: Celo x Huobi: Stablecoin in Web3 & Sustainability
 
-Try running some of the following tasks:
+This project allows users to buy a token by Dollar-Cost Averaging. They can choose an input token, an input amount, a frequency and an output token and a bot will execute the swaps over time.
 
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+For example, a user can choose to buy CELO with 100 cUSD in weekly 10 cUSD increments.
