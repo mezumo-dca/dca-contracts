@@ -4,8 +4,9 @@ module.exports = async ({ getNamedAccounts, deployments }) => {
   await deploy("DCA", {
     from: deployer,
     args: [
-      "0x765de816845861e75a25fca122bb6898b8b1282a",
-      "0x67316300f17f063085ca8bca4bd3f7a5a3c66275",
+      "0x056d9AAC902cc2925BB31f6C516B1e1579c35df9", // Oracle
+      "0xaCa6FBe30f1557004D261e2D905b82571aC9Bab7", // Beneficiary
+      4000, // Initial fee
     ],
     log: true,
   });

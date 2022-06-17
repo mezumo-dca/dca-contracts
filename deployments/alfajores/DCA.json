@@ -1,0 +1,1182 @@
+{
+  "address": "0x08A588dfaF7C2AA3a96bc16dd7df3704915b1E49",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract Oracle",
+          "name": "_oracle",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "initialFee",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "newBeneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "BeneficiarySet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "EmergencyWithdrawal",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "feeNumerator",
+          "type": "uint256"
+        }
+      ],
+      "name": "FeeNumeratorSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "OracleAddressMappingSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        }
+      ],
+      "name": "OracleSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "sellToken",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "contract IERC20",
+          "name": "buyToken",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amountPerSwap",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "numberOfSwaps",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "startingPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "OrderCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "RemainingWithdrawal",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "sellToken",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "buyToken",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sellAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "buyAmount",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "period",
+          "type": "uint256"
+        }
+      ],
+      "name": "SwapExecuted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "SwappedWithdrawal",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "sellToken",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "buyToken",
+          "type": "address"
+        }
+      ],
+      "name": "TokenPairInitialized",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "BLOCKS_PER_DAY",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "FEE_DENOMINATOR",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "MAX_FEE_NUMERATOR",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "addAddressMapping",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "beneficiary",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "_sellToken",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "_buyToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amountPerSwap",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_numberOfSwaps",
+          "type": "uint256"
+        }
+      ],
+      "name": "createOrder",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "token",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "emergencyWithdrawal",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_sellToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_buyToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_period",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_swapper",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_params",
+          "type": "bytes"
+        }
+      ],
+      "name": "executeOrder",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeNumerator",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrentPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "period",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getOracleTokenAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "getOrder",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IERC20",
+              "name": "sellToken",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "buyToken",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountPerSwap",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "numberOfSwaps",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startingPeriod",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lastPeriodWithdrawal",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct DCA.UserOrder",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_sellToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_buyToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_period",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSwapOrderAmountToReduce",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_sellToken",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_buyToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_period",
+          "type": "uint256"
+        }
+      ],
+      "name": "getSwapOrderExchangeRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "userAddress",
+          "type": "address"
+        }
+      ],
+      "name": "getUserOrders",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "contract IERC20",
+              "name": "sellToken",
+              "type": "address"
+            },
+            {
+              "internalType": "contract IERC20",
+              "name": "buyToken",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amountPerSwap",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "numberOfSwaps",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startingPeriod",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "lastPeriodWithdrawal",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct DCA.UserOrder[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract Oracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "oracleAddresses",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "orders",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "sellToken",
+          "type": "address"
+        },
+        {
+          "internalType": "contract IERC20",
+          "name": "buyToken",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountPerSwap",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "numberOfSwaps",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startingPeriod",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastPeriodWithdrawal",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_beneficiary",
+          "type": "address"
+        }
+      ],
+      "name": "setBeneficiary",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_feeNumerator",
+          "type": "uint256"
+        }
+      ],
+      "name": "setFeeNumerator",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract Oracle",
+          "name": "_newOracle",
+          "type": "address"
+        }
+      ],
+      "name": "setOracle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "swapOrders",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountToSwap",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "lastPeriod",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "index",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawSwapped",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xfcee7bb84979bc302ddcd728a824e10b58e57db71b554806e464da672da9e652",
+  "receipt": {
+    "to": null,
+    "from": "0xe59f139acBAB76d41623870F89f107d26Cf1E2B8",
+    "contractAddress": "0x08A588dfaF7C2AA3a96bc16dd7df3704915b1E49",
+    "transactionIndex": 6,
+    "gasUsed": "2299067",
+    "logsBloom": "0x0000000000000000000000000000000000000000000000000080000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000004002000000000000004000080000000000000000000000000008000040a000000000000000000000003000000000000000000000000004000000000000000002000000000080000000000000000000000000000000000000000000000000002000000000000000000000400000000000000000000000000000000020000000400000000000000000000000000000000000000000000000000800000000",
+    "blockHash": "0x7fdbf20d309a28a1ae2eb2fe20a1d4f2055263b41cf304221013bc4b6740e711",
+    "transactionHash": "0xfcee7bb84979bc302ddcd728a824e10b58e57db71b554806e464da672da9e652",
+    "logs": [
+      {
+        "transactionIndex": 6,
+        "blockNumber": 11994395,
+        "transactionHash": "0xfcee7bb84979bc302ddcd728a824e10b58e57db71b554806e464da672da9e652",
+        "address": "0x08A588dfaF7C2AA3a96bc16dd7df3704915b1E49",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000e59f139acbab76d41623870f89f107d26cf1e2b8"
+        ],
+        "data": "0x",
+        "logIndex": 14,
+        "blockHash": "0x7fdbf20d309a28a1ae2eb2fe20a1d4f2055263b41cf304221013bc4b6740e711"
+      },
+      {
+        "transactionIndex": 6,
+        "blockNumber": 11994395,
+        "transactionHash": "0xfcee7bb84979bc302ddcd728a824e10b58e57db71b554806e464da672da9e652",
+        "address": "0x08A588dfaF7C2AA3a96bc16dd7df3704915b1E49",
+        "topics": [
+          "0x3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa"
+        ],
+        "data": "0x000000000000000000000000a9c7211d0201c37fdc9767c196c83736cdb80c4d",
+        "logIndex": 15,
+        "blockHash": "0x7fdbf20d309a28a1ae2eb2fe20a1d4f2055263b41cf304221013bc4b6740e711"
+      },
+      {
+        "transactionIndex": 6,
+        "blockNumber": 11994395,
+        "transactionHash": "0xfcee7bb84979bc302ddcd728a824e10b58e57db71b554806e464da672da9e652",
+        "address": "0x08A588dfaF7C2AA3a96bc16dd7df3704915b1E49",
+        "topics": [
+          "0x04d55a8be181fb8d75b76f2d48aa0b2ee40f47e53d6e61763eeeec46feea8a24"
+        ],
+        "data": "0x000000000000000000000000aca6fbe30f1557004d261e2d905b82571ac9bab7",
+        "logIndex": 16,
+        "blockHash": "0x7fdbf20d309a28a1ae2eb2fe20a1d4f2055263b41cf304221013bc4b6740e711"
+      },
+      {
+        "transactionIndex": 6,
+        "blockNumber": 11994395,
+        "transactionHash": "0xfcee7bb84979bc302ddcd728a824e10b58e57db71b554806e464da672da9e652",
+        "address": "0x08A588dfaF7C2AA3a96bc16dd7df3704915b1E49",
+        "topics": [
+          "0xc1bcceddd77fdc95a8da9bec5802d2e0bb564dd02c0730222d8e12030bd91043"
+        ],
+        "data": "0x0000000000000000000000000000000000000000000000000000000000000fa0",
+        "logIndex": 17,
+        "blockHash": "0x7fdbf20d309a28a1ae2eb2fe20a1d4f2055263b41cf304221013bc4b6740e711"
+      }
+    ],
+    "blockNumber": 11994395,
+    "cumulativeGasUsed": "3097468",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xa9c7211d0201c37fdC9767c196c83736cDb80c4D",
+    "0xaCa6FBe30f1557004D261e2D905b82571aC9Bab7",
+    4000
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "038753e6485328f4b9a882efcbd870b2",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract Oracle\",\"name\":\"_oracle\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_beneficiary\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"initialFee\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newBeneficiary\",\"type\":\"address\"}],\"name\":\"BeneficiarySet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"EmergencyWithdrawal\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"feeNumerator\",\"type\":\"uint256\"}],\"name\":\"FeeNumeratorSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"OracleAddressMappingSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"}],\"name\":\"OracleSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"sellToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"contract IERC20\",\"name\":\"buyToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amountPerSwap\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"numberOfSwaps\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"startingPeriod\",\"type\":\"uint256\"}],\"name\":\"OrderCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"RemainingWithdrawal\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sellToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"buyToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"sellAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"buyAmount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"period\",\"type\":\"uint256\"}],\"name\":\"SwapExecuted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"SwappedWithdrawal\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"sellToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"buyToken\",\"type\":\"address\"}],\"name\":\"TokenPairInitialized\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"BLOCKS_PER_DAY\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"FEE_DENOMINATOR\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_FEE_NUMERATOR\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"addAddressMapping\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"beneficiary\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"_sellToken\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"_buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amountPerSwap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_numberOfSwaps\",\"type\":\"uint256\"}],\"name\":\"createOrder\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"emergencyWithdrawal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_sellToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_period\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_swapper\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_params\",\"type\":\"bytes\"}],\"name\":\"executeOrder\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeNumerator\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCurrentPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"period\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getOracleTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"getOrder\",\"outputs\":[{\"components\":[{\"internalType\":\"contract IERC20\",\"name\":\"sellToken\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountPerSwap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberOfSwaps\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startingPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastPeriodWithdrawal\",\"type\":\"uint256\"}],\"internalType\":\"struct DCA.UserOrder\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_sellToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_period\",\"type\":\"uint256\"}],\"name\":\"getSwapOrderAmountToReduce\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_sellToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_period\",\"type\":\"uint256\"}],\"name\":\"getSwapOrderExchangeRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"userAddress\",\"type\":\"address\"}],\"name\":\"getUserOrders\",\"outputs\":[{\"components\":[{\"internalType\":\"contract IERC20\",\"name\":\"sellToken\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountPerSwap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberOfSwaps\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startingPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastPeriodWithdrawal\",\"type\":\"uint256\"}],\"internalType\":\"struct DCA.UserOrder[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracle\",\"outputs\":[{\"internalType\":\"contract Oracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"oracleAddresses\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"orders\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"sellToken\",\"type\":\"address\"},{\"internalType\":\"contract IERC20\",\"name\":\"buyToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountPerSwap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"numberOfSwaps\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"startingPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastPeriodWithdrawal\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_beneficiary\",\"type\":\"address\"}],\"name\":\"setBeneficiary\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_feeNumerator\",\"type\":\"uint256\"}],\"name\":\"setFeeNumerator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract Oracle\",\"name\":\"_newOracle\",\"type\":\"address\"}],\"name\":\"setOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"swapOrders\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountToSwap\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"lastPeriod\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"withdrawAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"withdrawSwapped\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/DCA.sol\":\"DCA\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[],\"viaIR\":true},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (access/Ownable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner account will be the one that deploys the contract. This\\n * can later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the deployer as the initial owner.\\n     */\\n    constructor() {\\n        _transferOwnership(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        require(owner() == _msgSender(), \\\"Ownable: caller is not the owner\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions anymore. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby removing any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        require(newOwner != address(0), \\\"Ownable: new owner is the zero address\\\");\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0x24e0364e503a9bbde94c715d26573a76f14cd2a202d45f96f52134ab806b67b9\",\"license\":\"MIT\"},\"@openzeppelin/contracts/security/Pausable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (security/Pausable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which allows children to implement an emergency stop\\n * mechanism that can be triggered by an authorized account.\\n *\\n * This module is used through inheritance. It will make available the\\n * modifiers `whenNotPaused` and `whenPaused`, which can be applied to\\n * the functions of your contract. Note that they will not be pausable by\\n * simply including this module, only once the modifiers are put in place.\\n */\\nabstract contract Pausable is Context {\\n    /**\\n     * @dev Emitted when the pause is triggered by `account`.\\n     */\\n    event Paused(address account);\\n\\n    /**\\n     * @dev Emitted when the pause is lifted by `account`.\\n     */\\n    event Unpaused(address account);\\n\\n    bool private _paused;\\n\\n    /**\\n     * @dev Initializes the contract in unpaused state.\\n     */\\n    constructor() {\\n        _paused = false;\\n    }\\n\\n    /**\\n     * @dev Returns true if the contract is paused, and false otherwise.\\n     */\\n    function paused() public view virtual returns (bool) {\\n        return _paused;\\n    }\\n\\n    /**\\n     * @dev Modifier to make a function callable only when the contract is not paused.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must not be paused.\\n     */\\n    modifier whenNotPaused() {\\n        require(!paused(), \\\"Pausable: paused\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Modifier to make a function callable only when the contract is paused.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must be paused.\\n     */\\n    modifier whenPaused() {\\n        require(paused(), \\\"Pausable: not paused\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Triggers stopped state.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must not be paused.\\n     */\\n    function _pause() internal virtual whenNotPaused {\\n        _paused = true;\\n        emit Paused(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Returns to normal state.\\n     *\\n     * Requirements:\\n     *\\n     * - The contract must be paused.\\n     */\\n    function _unpause() internal virtual whenPaused {\\n        _paused = false;\\n        emit Unpaused(_msgSender());\\n    }\\n}\\n\",\"keccak256\":\"0xe68ed7fb8766ed1e888291f881e36b616037f852b37d96877045319ad298ba87\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v4.6.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the amount of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the amount of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves `amount` tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets `amount` as the allowance of `spender` over the caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 amount) external returns (bool);\\n\\n    /**\\n     * @dev Moves `amount` tokens from `from` to `to` using the\\n     * allowance mechanism. `amount` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(\\n        address from,\\n        address to,\\n        uint256 amount\\n    ) external returns (bool);\\n}\\n\",\"keccak256\":\"0x9750c6b834f7b43000631af5cc30001c5f547b3ceb3635488f140f60e897ea6b\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n}\\n\",\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\"},\"contracts/DCA.sol\":{\"content\":\"//SPDX-License-Identifier: Unlicense\\npragma solidity ^0.8.0;\\n\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\nimport \\\"@openzeppelin/contracts/security/Pausable.sol\\\";\\nimport \\\"./interfaces/ISwapper.sol\\\";\\nimport \\\"./interfaces/IOracle.sol\\\";\\n\\ncontract DCA is Ownable {\\n    uint256 public constant BLOCKS_PER_DAY = 17280;\\n    uint256 public constant MAX_FEE_NUMERATOR = 6_000; // max 60 bps.\\n    uint256 public constant FEE_DENOMINATOR = 1_000_000;\\n\\n    event OrderCreated(\\n        address indexed userAddress,\\n        uint256 index,\\n        IERC20 indexed sellToken,\\n        IERC20 indexed buyToken,\\n        uint256 amountPerSwap,\\n        uint256 numberOfSwaps,\\n        uint256 startingPeriod\\n    );\\n    event SwapExecuted(\\n        address indexed sellToken,\\n        address indexed buyToken,\\n        uint256 sellAmount,\\n        uint256 buyAmount,\\n        uint256 indexed period\\n    );\\n    event SwappedWithdrawal(\\n        address indexed userAddress,\\n        uint256 indexed index,\\n        address indexed token,\\n        uint256 amount\\n    );\\n    event RemainingWithdrawal(\\n        address indexed userAddress,\\n        uint256 indexed index,\\n        address indexed token,\\n        uint256 amount\\n    );\\n    event TokenPairInitialized(address sellToken, address buyToken);\\n    event EmergencyWithdrawal(address token, uint256 amount, address to);\\n    event OracleSet(address oracle);\\n    event OracleAddressMappingSet(address from, address to);\\n    event BeneficiarySet(address newBeneficiary);\\n    event FeeNumeratorSet(uint256 feeNumerator);\\n\\n    struct UserOrder {\\n        IERC20 sellToken;\\n        IERC20 buyToken;\\n        uint256 amountPerSwap;\\n        uint256 numberOfSwaps;\\n        uint256 startingPeriod;\\n        uint256 lastPeriodWithdrawal;\\n    }\\n\\n    struct SwapOrder {\\n        uint256 amountToSwap;\\n        uint256 lastPeriod;\\n        // For each past period, what exchange rate was used.\\n        mapping(uint256 => uint256) swapExchangeRates;\\n        // For each future period, how much to reduce to |amountToSwap|.\\n        mapping(uint256 => uint256) amountsToReduce;\\n    }\\n\\n    // sellToken => buyToken => SwapOrder\\n    mapping(address => mapping(address => SwapOrder)) public swapOrders;\\n    // userAddress => UserOrder list\\n    mapping(address => UserOrder[]) public orders;\\n    // For cUSD, we need to use mcUSD in the oracle because of Ubeswap liquidity. Same with cEUR/cREAL.\\n    mapping(address => address) public oracleAddresses;\\n\\n    uint256 public feeNumerator;\\n    address public beneficiary;\\n    Oracle public oracle;\\n\\n    constructor(\\n        Oracle _oracle,\\n        address _beneficiary,\\n        uint256 initialFee\\n    ) {\\n        setOracle(_oracle);\\n        setBeneficiary(_beneficiary);\\n        setFeeNumerator(initialFee);\\n    }\\n\\n    function createOrder(\\n        IERC20 _sellToken,\\n        IERC20 _buyToken,\\n        uint256 _amountPerSwap,\\n        uint256 _numberOfSwaps\\n    ) external returns (uint256 index) {\\n        require(\\n            _sellToken.transferFrom(\\n                msg.sender,\\n                address(this),\\n                _amountPerSwap * _numberOfSwaps\\n            ),\\n            \\\"DCA: Not enough funds\\\"\\n        );\\n\\n        SwapOrder storage swapOrder = swapOrders[address(_sellToken)][\\n            address(_buyToken)\\n        ];\\n        if (swapOrder.lastPeriod == 0) {\\n            swapOrder.lastPeriod = getCurrentPeriod() - 1;\\n            emit TokenPairInitialized(address(_sellToken), address(_buyToken));\\n        }\\n        uint256 startingPeriod = swapOrder.lastPeriod + 1;\\n        UserOrder memory newOrder = UserOrder(\\n            _sellToken,\\n            _buyToken,\\n            _amountPerSwap,\\n            _numberOfSwaps,\\n            startingPeriod,\\n            swapOrder.lastPeriod\\n        );\\n\\n        swapOrder.amountToSwap += _amountPerSwap;\\n        swapOrder.amountsToReduce[\\n            startingPeriod + _numberOfSwaps - 1\\n        ] += _amountPerSwap;\\n\\n        index = orders[msg.sender].length;\\n        orders[msg.sender].push(newOrder);\\n\\n        emit OrderCreated(\\n            msg.sender,\\n            index,\\n            _sellToken,\\n            _buyToken,\\n            _amountPerSwap,\\n            _numberOfSwaps,\\n            startingPeriod\\n        );\\n    }\\n\\n    function executeOrder(\\n        address _sellToken,\\n        address _buyToken,\\n        uint256 _period,\\n        address _swapper,\\n        bytes memory _params\\n    ) external {\\n        SwapOrder storage swapOrder = swapOrders[_sellToken][_buyToken];\\n        require(swapOrder.lastPeriod + 1 == _period, \\\"DCA: Invalid period\\\");\\n        require(\\n            _period <= getCurrentPeriod(),\\n            \\\"DCA: Period cannot be in the future\\\"\\n        );\\n        uint256 swapAmount = swapOrder.amountToSwap;\\n\\n        uint256 requiredAmount = oracle.consult(\\n            getOracleTokenAddress(_sellToken),\\n            swapAmount,\\n            getOracleTokenAddress(_buyToken)\\n        );\\n        require(requiredAmount > 0, \\\"DCA: Oracle failure\\\");\\n\\n        swapOrder.lastPeriod++;\\n        swapOrder.swapExchangeRates[_period] =\\n            requiredAmount /\\n            swapOrder.amountToSwap;\\n        swapOrder.amountToSwap -= swapOrder.amountsToReduce[_period];\\n\\n        uint256 balanceBefore = IERC20(_buyToken).balanceOf(address(this));\\n        require(\\n            IERC20(_sellToken).transfer(_swapper, swapAmount),\\n            \\\"DCA: Transfer to Swapper failed\\\"\\n        );\\n        ISwapper(_swapper).swap(\\n            _sellToken,\\n            _buyToken,\\n            swapAmount,\\n            requiredAmount,\\n            _params\\n        );\\n        require(\\n            balanceBefore + requiredAmount <=\\n                IERC20(_buyToken).balanceOf(address(this)),\\n            \\\"DCA: Not enough balance returned\\\"\\n        );\\n\\n        emit SwapExecuted(\\n            _sellToken,\\n            _buyToken,\\n            swapAmount,\\n            requiredAmount,\\n            _period\\n        );\\n    }\\n\\n    function withdrawSwapped(uint256 index) public {\\n        UserOrder storage order = orders[msg.sender][index];\\n        SwapOrder storage swapOrder = swapOrders[address(order.sellToken)][\\n            address(order.buyToken)\\n        ];\\n\\n        uint256 finalPeriod = order.startingPeriod + order.numberOfSwaps - 1;\\n        uint256 amountToWithdraw = 0;\\n        for (\\n            uint256 period = order.lastPeriodWithdrawal + 1;\\n            period <= finalPeriod;\\n            period++\\n        ) {\\n            amountToWithdraw +=\\n                swapOrder.swapExchangeRates[period] *\\n                order.amountPerSwap;\\n        }\\n        order.lastPeriodWithdrawal = finalPeriod;\\n\\n        require(\\n            order.buyToken.transfer(msg.sender, amountToWithdraw),\\n            \\\"DCA: Not enough funds to withdraw\\\"\\n        );\\n\\n        emit SwappedWithdrawal(\\n            msg.sender,\\n            index,\\n            address(order.buyToken),\\n            amountToWithdraw\\n        );\\n    }\\n\\n    function withdrawAll(uint256 index) external {\\n        withdrawSwapped(index);\\n\\n        UserOrder storage order = orders[msg.sender][index];\\n        SwapOrder storage swapOrder = swapOrders[address(order.sellToken)][\\n            address(order.buyToken)\\n        ];\\n\\n        uint256 finalPeriod = order.startingPeriod + order.numberOfSwaps - 1;\\n\\n        if (finalPeriod > swapOrder.lastPeriod) {\\n            swapOrder.amountToSwap -= order.amountPerSwap;\\n            swapOrder.amountsToReduce[finalPeriod] -= order.amountPerSwap;\\n            uint256 amountToWithdraw = order.amountPerSwap *\\n                (finalPeriod - swapOrder.lastPeriod);\\n\\n            require(\\n                order.sellToken.transfer(msg.sender, amountToWithdraw),\\n                \\\"DCA: Not enough funds to withdraw\\\"\\n            );\\n\\n            emit RemainingWithdrawal(\\n                msg.sender,\\n                index,\\n                address(order.sellToken),\\n                amountToWithdraw\\n            );\\n        }\\n    }\\n\\n    function emergencyWithdrawal(IERC20 token, address to) external onlyOwner {\\n        uint256 balance = token.balanceOf(address(this));\\n        require(token.transfer(to, balance), \\\"DCA: Emergency transfer failed\\\");\\n        emit EmergencyWithdrawal(address(token), balance, to);\\n    }\\n\\n    // Parameter setters\\n\\n    function setOracle(Oracle _newOracle) public onlyOwner {\\n        oracle = _newOracle;\\n        emit OracleSet(address(oracle));\\n    }\\n\\n    function setBeneficiary(address _beneficiary) public onlyOwner {\\n        beneficiary = _beneficiary;\\n        emit BeneficiarySet(_beneficiary);\\n    }\\n\\n    function setFeeNumerator(uint256 _feeNumerator) public onlyOwner {\\n        feeNumerator = _feeNumerator;\\n        emit FeeNumeratorSet(_feeNumerator);\\n    }\\n\\n    function addAddressMapping(address _from, address _to) external onlyOwner {\\n        oracleAddresses[_from] = _to;\\n        emit OracleAddressMappingSet(_from, _to);\\n    }\\n\\n    // Views\\n\\n    function getUserOrders(address userAddress)\\n        external\\n        view\\n        returns (UserOrder[] memory)\\n    {\\n        return orders[userAddress];\\n    }\\n\\n    function getOrder(address userAddress, uint256 index)\\n        external\\n        view\\n        returns (UserOrder memory)\\n    {\\n        return orders[userAddress][index];\\n    }\\n\\n    function getSwapOrderAmountToReduce(\\n        address _sellToken,\\n        address _buyToken,\\n        uint256 _period\\n    ) external view returns (uint256) {\\n        return swapOrders[_sellToken][_buyToken].amountsToReduce[_period];\\n    }\\n\\n    function getSwapOrderExchangeRate(\\n        address _sellToken,\\n        address _buyToken,\\n        uint256 _period\\n    ) external view returns (uint256) {\\n        return swapOrders[_sellToken][_buyToken].swapExchangeRates[_period];\\n    }\\n\\n    function getOracleTokenAddress(address token)\\n        public\\n        view\\n        returns (address)\\n    {\\n        address mappedToken = oracleAddresses[token];\\n        if (mappedToken != address(0)) {\\n            return mappedToken;\\n        } else {\\n            return token;\\n        }\\n    }\\n\\n    function getCurrentPeriod() public view returns (uint256 period) {\\n        period = block.number / BLOCKS_PER_DAY;\\n    }\\n}\\n\",\"keccak256\":\"0x28464f62ab639787cb819ddd9e204af2c272c9edca1c28ffb9a7fa206a2283ca\",\"license\":\"Unlicense\"},\"contracts/interfaces/IOracle.sol\":{\"content\":\"pragma solidity ^0.8.0;\\n\\ninterface Oracle {\\n    function consult(\\n        address tokenIn,\\n        uint256 amountIn,\\n        address tokenOut\\n    ) external view returns (uint256 amountOut);\\n}\\n\",\"keccak256\":\"0x8dd212f98a48f8f21309dc63a3d24fc7ea9cc7de3d256e20f5cc35ebff1b0236\"},\"contracts/interfaces/ISwapper.sol\":{\"content\":\"//SPDX-License-Identifier: Unlicense\\npragma solidity ^0.8.0;\\n\\ninterface ISwapper {\\n    function swap(\\n        address _sellToken,\\n        address _buyToken,\\n        uint256 _inAmount,\\n        uint256 _outAmount,\\n        bytes calldata _params\\n    ) external;\\n}\\n\",\"keccak256\":\"0xee1d78e67fe71cb4c4af76a9b0851c8398a479be89dd654632fa2ac66e3d7709\",\"license\":\"Unlicense\"}},\"version\":1}",
+  "bytecode": "0x6080346200008057601f620028b438819003918201601f19168301916001600160401b03831184841017620000855780849260609460405283398101031262000080578051620000709162000054826200009b565b604060208201519162000067836200009b565b015191620000ad565b60405161271b9081620001998239f35b600080fd5b634e487b7160e01b600052604160045260246000fd5b6001600160a01b038116036200008057565b600080546001600160a01b03198082163390811784556040517fc1bcceddd77fdc95a8da9bec5802d2e0bb564dd02c0730222d8e12030bd910439760209790967f04d55a8be181fb8d75b76f2d48aa0b2ee40f47e53d6e61763eeeec46feea8a249689966001600160a01b039593947f3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa948994919388938416907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09086a316808760065416176006558152a11680916005541617600555604051908152a180600455604051908152a156fe60806040526004361015610013575b600080fd5b60003560e01c806306dc1f6a1461022f578063086146d2146102265780631c31f7101461021d57806324b0b59c1461021457806337e5724b1461020b57806338af3eed146102025780633dea653b146101f957806363c69f08146101f05780636bb987fe146101e7578063715018a6146101de57806371eb125e146101d5578063793b8c6d146101cc5780637adbf973146101c35780637dc0d1d0146101ba5780638da5cb5b146101b15780638ff9b843146101a8578063958e2d311461019f578063a45db91114610196578063aa24dca21461018d578063d73792a914610184578063e111e3e71461017b578063e86dea4a14610172578063edb2584114610169578063f2c1063614610160578063f2fde38b14610157578063fd9b56871461014e5763fe8799181461014657600080fd5b61000e6115ac565b5061000e611570565b5061000e61147c565b5061000e611453565b5061000e6113a3565b5061000e61130b565b5061000e6112d0565b5061000e611293565b5061000e61109e565b5061000e611018565b5061000e610d53565b5061000e610c7a565b5061000e610c27565b5061000e610bd4565b5061000e610b1c565b5061000e610a41565b5061000e61098a565b5061000e6108e2565b5061000e6108a6565b5061000e6107d0565b5061000e6106c5565b5061000e61062c565b5061000e6105c8565b5061000e610551565b5061000e61044f565b5061000e610411565b5061000e610313565b73ffffffffffffffffffffffffffffffffffffffff81160361000e57565b507f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b60c0810190811067ffffffffffffffff8211176102a257604052565b6102aa610256565b604052565b67ffffffffffffffff81116102a257604052565b90601f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0910116810190811067ffffffffffffffff8211176102a257604052565b6040519061031182610286565b565b503461000e5760a07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760043561034f81610238565b60243561035b81610238565b60643561036781610238565b6084359267ffffffffffffffff9283851161000e573660238601121561000e5784600401359384116103f9575b604051936103ca60207fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0601f84011601866102c3565b808552366024828801011161000e5760208160009260246103f79901838901378601015260443591611f7e565b005b610401610256565b610394565b600091031261000e57565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602060405161438043048152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f04d55a8be181fb8d75b76f2d48aa0b2ee40f47e53d6e61763eeeec46feea8a2460206004356104ae81610238565b73ffffffffffffffffffffffffffffffffffffffff906104d3826000541633146118ca565b16807fffffffffffffffffffffffff00000000000000000000000000000000000000006005541617600555604051908152a1005b7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc606091011261000e5760043561053d81610238565b9060243561054a81610238565b9060443590565b503461000e5773ffffffffffffffffffffffffffffffffffffffff60026105b061057a36610507565b94909116600052600160205260406000209073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b01906000526020526020604060002054604051908152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602061060e60043561060981610238565b6126ad565b73ffffffffffffffffffffffffffffffffffffffff60405191168152f35b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60055416604051908152f35b7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc604091011261000e576004356106b581610238565b906024356106c281610238565b90565b503461000e5761072073ffffffffffffffffffffffffffffffffffffffff6106ec3661067f565b9116600052600160205260406000209073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b805460019091015460408051928352602083019190915290f35b0390f35b6020908160408183019282815285518094520193019160005b828110610765575050505090565b909192938260c0826107c4600194895160a0809173ffffffffffffffffffffffffffffffffffffffff80825116855260208201511660208501526040810151604085015260608101516060850152608081015160808501520151910152565b01950193929101610757565b503461000e576020807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5773ffffffffffffffffffffffffffffffffffffffff60043561082281610238565b1660005260028152604060002090815467ffffffffffffffff8111610899575b6040519192610857600583901b8501846102c3565b8183526000908152838120938084015b83831061087c576040518061073a878261073e565b60068260019261088b8961264f565b815201960192019194610867565b6108a1610256565b610842565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760206040516143808152f35b503461000e576000807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc3601126109875780547fffffffffffffffffffffffff000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff8216916109593384146118ca565b16825581604051917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08284a3f35b80fd5b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760206004356109c881610238565b73ffffffffffffffffffffffffffffffffffffffff8091166000526003825260406000205416604051908152f35b8054821015610a12576000526006602060002091020190600090565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57600435610a7d81610238565b60243573ffffffffffffffffffffffffffffffffffffffff8092166000526002602052604060002090815481101561000e57610ab8916109f6565b50805460018201546002830154600384015460048501546005909501546040805173ffffffffffffffffffffffffffffffffffffffff96891687168152979094169094166020870152918501526060840152608083019190915260a082015260c090f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa6020600435610b7b81610238565b73ffffffffffffffffffffffffffffffffffffffff90610ba0826000541633146118ca565b16807fffffffffffffffffffffffff00000000000000000000000000000000000000006006541617600655604051908152a1005b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60065416604051908152f35b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60005416604051908152f35b503461000e577f07d2c916c33b57e54689377381be3ef67a6a53c120daaf90e1e16f1645777e50610caa3661067f565b9073ffffffffffffffffffffffffffffffffffffffff610ccf816000541633146118ca565b81166000526003602052610d228260406000209073ffffffffffffffffffffffffffffffffffffffff167fffffffffffffffffffffffff0000000000000000000000000000000000000000825416179055565b6040805173ffffffffffffffffffffffffffffffffffffffff9283168152929091166020830152819081015b0390a1005b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57600435610d8f8161242f565b610dc281610dbd3373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b6109f6565b5090610e72610e2a610e04610deb855473ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff166000526001602052604060002090565b610e4e610deb600186015473ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b610e8d610e886004850154600386015490611b14565b611a95565b90600181019081548311610e9d57005b610f09610fab92610f0373ffffffffffffffffffffffffffffffffffffffff95610deb9460028a0190610ed282548254611acf565b8155610ef8610ef08460038554940190600052602052604060002090565b918254611acf565b905554925490611acf565b906119ce565b94610f9160006020610f77610f35610deb865473ffffffffffffffffffffffffffffffffffffffff1690565b6040517fa9059cbb000000000000000000000000000000000000000000000000000000008152336004820152602481018c905293849283919082906044820190565b03925af190811561100b575b600091610fdd575b506123a4565b5473ffffffffffffffffffffffffffffffffffffffff1690565b604051938452169133907f1aea12ef3450ec7749a467b47e7d800a7b493e4601d440ac5aebb94f747c122890602090a4005b610ffe915060203d8111611004575b610ff681836102c3565b810190611a0b565b38610f8b565b503d610fec565b611013611a23565b610f83565b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577fc1bcceddd77fdc95a8da9bec5802d2e0bb564dd02c0730222d8e12030bd91043602060043561109173ffffffffffffffffffffffffffffffffffffffff6000541633146118ca565b80600455604051908152a1005b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f3ab9db27a4cdd8c603a752b62d5fbd93b4b3509fe2596708e9688e42bbac35766004356110fb81610238565b6024359061110882610238565b73ffffffffffffffffffffffffffffffffffffffff9061112d826000541633146118ca565b6040517f70a082310000000000000000000000000000000000000000000000000000000081523060048201529291169060208084602481865afa938415611286575b60009461124d575b506040517fa9059cbb00000000000000000000000000000000000000000000000000000000815273ffffffffffffffffffffffffffffffffffffffff8316600482015260248101859052610d4e92916111eb91818160448160008a5af1918215611240575b600092611223575b50506125ea565b6040519384938491939290604091606084019573ffffffffffffffffffffffffffffffffffffffff8093168552602085015216910152565b6112399250803d1061100457610ff681836102c3565b38806111e4565b611248611a23565b6111dc565b8194506112766111eb91610d4e94933d881161127f575b61126e81836102c3565b810190611d30565b94919250611177565b503d611264565b61128e611a23565b61116f565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576020604051620f42408152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576103f760043561242f565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576020600454604051908152f35b6103119092919260c081019360a0809173ffffffffffffffffffffffffffffffffffffffff80825116855260208201511660208501526040810151604085015260608101516060850152608081015160808501520151910152565b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5761073a61144761144160a073ffffffffffffffffffffffffffffffffffffffff6004356113ff81610238565b60405161140b81610286565b600093818580935282602082015282604082015282606082015282608082015201521681526002602052604060243591206109f6565b5061264f565b60405191829182611348565b503461000e5773ffffffffffffffffffffffffffffffffffffffff60036105b061057a36610507565b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576004356114b881610238565b73ffffffffffffffffffffffffffffffffffffffff6114dc816000541633146118ca565b8116156114ec576103f79061192f565b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760206040516117708152f35b503461000e5760807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5761073a6004356115eb81610238565b6024356115f781610238565b604435606435907faf8bd3c5abe498e30aea149b38afa6e7d9bbe58c9129b38eff2912440734c6e273ffffffffffffffffffffffffffffffffffffffff93848616936116ae611691602061164b84886119ce565b6040517f23b872dd000000000000000000000000000000000000000000000000000000008152336004820152306024820152604481019190915291829081906064820190565b038160008b5af19081156118bd575b60009161189f575b50611a30565b6117aa6117086116de8773ffffffffffffffffffffffffffffffffffffffff166000526001602052604060002090565b97841680989073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b60018101805415611842575b5461176661172182611ae6565b9561174961172d610304565b73ffffffffffffffffffffffffffffffffffffffff909d168d52565b73ffffffffffffffffffffffffffffffffffffffff1660208c0152565b8660408b01528360608b01528460808b015260a08a0152611788868254611b14565b81556003611799610e888587611b14565b910190600052602052604060002090565b6117b5858254611b14565b90556118156117e43373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b54976118103373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b611b20565b60408051888152602081019590955284015260608301523391608090a46040519081529081906020820190565b61184f6143804304611a95565b81556040805173ffffffffffffffffffffffffffffffffffffffff8a811682528b1660208201527f1860ddfae81fa4edaec7accf480512d07263c8e909d5cdae84da78e098fc7b099190a1611714565b6118b7915060203d811161100457610ff681836102c3565b386116a8565b6118c5611a23565b6116a0565b156118d157565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b6000549073ffffffffffffffffffffffffffffffffffffffff80911691827fffffffffffffffffffffffff0000000000000000000000000000000000000000821617600055167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e06000604051a3565b507f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b807fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff048211811515166119ff570290565b611a0761199e565b0290565b9081602091031261000e5751801515810361000e5790565b506040513d6000823e3d90fd5b15611a3757565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601560248201527f4443413a204e6f7420656e6f7567682066756e647300000000000000000000006044820152fd5b7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff9060018110611ac3570190565b611acb61199e565b0190565b818110611ada570390565b611ae261199e565b0390565b6001907ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe8111611ac3570190565b81198111611ac3570190565b8054611b439168010000000000000000821015611c33575b6001820181556109f6565b919091611c0457805182547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff91821617835560059160a091611bdf90602083015116600186019073ffffffffffffffffffffffffffffffffffffffff167fffffffffffffffffffffffff0000000000000000000000000000000000000000825416179055565b6040810151600285015560608101516003850155608081015160048501550151910155565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b611c3b610256565b611b38565b15611c4757565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601360248201527f4443413a20496e76616c696420706572696f64000000000000000000000000006044820152fd5b15611cac57565b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602360248201527f4443413a20506572696f642063616e6e6f7420626520696e207468652066757460448201527f75726500000000000000000000000000000000000000000000000000000000006064820152fd5b9081602091031261000e575190565b15611d4657565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601360248201527f4443413a204f7261636c65206661696c757265000000000000000000000000006044820152fd5b6001907fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8114611ac3570190565b8115611ddc570490565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601260045260246000fd5b15611e1257565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601f60248201527f4443413a205472616e7366657220746f2053776170706572206661696c6564006044820152fd5b9391929095949573ffffffffffffffffffffffffffffffffffffffff809116855260209316838501526040840152606083015260a060808301528351908160a08401526000945b828610611f03575050601f817fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe09260c0959611611ef6575b0116010190565b6000858286010152611eef565b85810182015184870160c0015294810194611eb7565b15611f2057565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602060248201527f4443413a204e6f7420656e6f7567682062616c616e63652072657475726e65646044820152fd5b92906121df92946120a991611fdc81611fb78873ffffffffffffffffffffffffffffffffffffffff166000526001602052604060002090565b9073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b916001830190815491611ff88a611ff285611ae6565b14611c40565b61200861438043048b1115611ca5565b845494859161202f610deb60065473ffffffffffffffffffffffffffffffffffffffff1690565b946120398c6126ad565b612042886126ad565b604097885180809d81947f8c86f1e400000000000000000000000000000000000000000000000000000000835260209a8b976004850191939290604091606084019573ffffffffffffffffffffffffffffffffffffffff8093168552602085015216910152565b03915afa988915612397575b600099612374575b506120d2906120cd8a1515611d3f565b611da4565b90556120de8688611dd2565b60008c81526002830160205260409020556121116121098c6003840190600052602052604060002090565b548254611acf565b905582517f70a082310000000000000000000000000000000000000000000000000000000080825230600483015273ffffffffffffffffffffffffffffffffffffffff8681169b9299919291848b8e81806024810103915afa9a8b15612367575b60009b612348575b506121f96000868486169e8f8d8c519485809481937fa9059cbb0000000000000000000000000000000000000000000000000000000083528a600484016020909392919373ffffffffffffffffffffffffffffffffffffffff60408201951681520152565b03925af190811561233b575b60009161231e575b50611e0b565b16803b1561000e577f28c738dbec11a1bed94ba127a3712d54bcd39cf4ae95b6ebd671aaf10fd0287b998960008a82946122c79b836122849861226e6122b19d8f51988997889687957f2506c01800000000000000000000000000000000000000000000000000000000875260048701611e70565b03925af18015612311575b6122f8575b50611b14565b84519182523060048301529082816024818e5afa9283156122eb575b6000936122cc575b50501115611f19565b5191825260208201929092529081906040820190565b0390a4565b6122e3929350803d1061127f5761126e81836102c3565b9038806122a8565b6122f3611a23565b6122a0565b8061230561230b926102af565b80610406565b3861227e565b612319611a23565b612279565b6123359150873d891161100457610ff681836102c3565b386121f3565b612343611a23565b6121eb565b612360919b50853d871161127f5761126e81836102c3565b993861217a565b61236f611a23565b612172565b6120d291995061239090853d871161127f5761126e81836102c3565b98906120bd565b61239f611a23565b6120b5565b156123ab57565b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602160248201527f4443413a204e6f7420656e6f7567682066756e647320746f207769746864726160448201527f77000000000000000000000000000000000000000000000000000000000000006064820152fd5b61245d81610dbd3373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b5090612483610e04610deb845473ffffffffffffffffffffffffffffffffffffffff1690565b60018301906124d36124ac610deb845473ffffffffffffffffffffffffffffffffffffffff1690565b80929073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b936124ea610e886004830154600384015490611b14565b9060009560058201916002806125008554611ae6565b93019101545b848311156125af57505050556040517fa9059cbb0000000000000000000000000000000000000000000000000000000081523360048201526024810185905273ffffffffffffffffffffffffffffffffffffffff9261257992610deb92610f919160209082908160008160448101610f77565b604051938452169133907fe6f9d2780c8923607fbb084350c15a1655c3fc682c989303c218a016a00324a09080602081016122c7565b9091976125dd6125e3916125d7846125d18d8890600052602052604060002090565b546119ce565b90611b14565b98611da4565b9190612506565b156125f157565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601e60248201527f4443413a20456d657267656e6379207472616e73666572206661696c656400006044820152fd5b9060405161265c81610286565b60a06005829473ffffffffffffffffffffffffffffffffffffffff80825416855260018201541660208501526002810154604085015260038101546060850152600481015460808501520154910152565b73ffffffffffffffffffffffffffffffffffffffff818116600090815260036020526040902054169081156126e0575090565b90509056fea2646970667358221220655cfa975b7afa628570450e59ec0370c84c390dda42771139e70318712d360464736f6c634300080d0033",
+  "deployedBytecode": "0x60806040526004361015610013575b600080fd5b60003560e01c806306dc1f6a1461022f578063086146d2146102265780631c31f7101461021d57806324b0b59c1461021457806337e5724b1461020b57806338af3eed146102025780633dea653b146101f957806363c69f08146101f05780636bb987fe146101e7578063715018a6146101de57806371eb125e146101d5578063793b8c6d146101cc5780637adbf973146101c35780637dc0d1d0146101ba5780638da5cb5b146101b15780638ff9b843146101a8578063958e2d311461019f578063a45db91114610196578063aa24dca21461018d578063d73792a914610184578063e111e3e71461017b578063e86dea4a14610172578063edb2584114610169578063f2c1063614610160578063f2fde38b14610157578063fd9b56871461014e5763fe8799181461014657600080fd5b61000e6115ac565b5061000e611570565b5061000e61147c565b5061000e611453565b5061000e6113a3565b5061000e61130b565b5061000e6112d0565b5061000e611293565b5061000e61109e565b5061000e611018565b5061000e610d53565b5061000e610c7a565b5061000e610c27565b5061000e610bd4565b5061000e610b1c565b5061000e610a41565b5061000e61098a565b5061000e6108e2565b5061000e6108a6565b5061000e6107d0565b5061000e6106c5565b5061000e61062c565b5061000e6105c8565b5061000e610551565b5061000e61044f565b5061000e610411565b5061000e610313565b73ffffffffffffffffffffffffffffffffffffffff81160361000e57565b507f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b60c0810190811067ffffffffffffffff8211176102a257604052565b6102aa610256565b604052565b67ffffffffffffffff81116102a257604052565b90601f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0910116810190811067ffffffffffffffff8211176102a257604052565b6040519061031182610286565b565b503461000e5760a07ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760043561034f81610238565b60243561035b81610238565b60643561036781610238565b6084359267ffffffffffffffff9283851161000e573660238601121561000e5784600401359384116103f9575b604051936103ca60207fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0601f84011601866102c3565b808552366024828801011161000e5760208160009260246103f79901838901378601015260443591611f7e565b005b610401610256565b610394565b600091031261000e57565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602060405161438043048152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f04d55a8be181fb8d75b76f2d48aa0b2ee40f47e53d6e61763eeeec46feea8a2460206004356104ae81610238565b73ffffffffffffffffffffffffffffffffffffffff906104d3826000541633146118ca565b16807fffffffffffffffffffffffff00000000000000000000000000000000000000006005541617600555604051908152a1005b7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc606091011261000e5760043561053d81610238565b9060243561054a81610238565b9060443590565b503461000e5773ffffffffffffffffffffffffffffffffffffffff60026105b061057a36610507565b94909116600052600160205260406000209073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b01906000526020526020604060002054604051908152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602061060e60043561060981610238565b6126ad565b73ffffffffffffffffffffffffffffffffffffffff60405191168152f35b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60055416604051908152f35b7ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc604091011261000e576004356106b581610238565b906024356106c281610238565b90565b503461000e5761072073ffffffffffffffffffffffffffffffffffffffff6106ec3661067f565b9116600052600160205260406000209073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b805460019091015460408051928352602083019190915290f35b0390f35b6020908160408183019282815285518094520193019160005b828110610765575050505090565b909192938260c0826107c4600194895160a0809173ffffffffffffffffffffffffffffffffffffffff80825116855260208201511660208501526040810151604085015260608101516060850152608081015160808501520151910152565b01950193929101610757565b503461000e576020807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5773ffffffffffffffffffffffffffffffffffffffff60043561082281610238565b1660005260028152604060002090815467ffffffffffffffff8111610899575b6040519192610857600583901b8501846102c3565b8183526000908152838120938084015b83831061087c576040518061073a878261073e565b60068260019261088b8961264f565b815201960192019194610867565b6108a1610256565b610842565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760206040516143808152f35b503461000e576000807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc3601126109875780547fffffffffffffffffffffffff000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff8216916109593384146118ca565b16825581604051917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08284a3f35b80fd5b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760206004356109c881610238565b73ffffffffffffffffffffffffffffffffffffffff8091166000526003825260406000205416604051908152f35b8054821015610a12576000526006602060002091020190600090565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052603260045260246000fd5b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57600435610a7d81610238565b60243573ffffffffffffffffffffffffffffffffffffffff8092166000526002602052604060002090815481101561000e57610ab8916109f6565b50805460018201546002830154600384015460048501546005909501546040805173ffffffffffffffffffffffffffffffffffffffff96891687168152979094169094166020870152918501526060840152608083019190915260a082015260c090f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa6020600435610b7b81610238565b73ffffffffffffffffffffffffffffffffffffffff90610ba0826000541633146118ca565b16807fffffffffffffffffffffffff00000000000000000000000000000000000000006006541617600655604051908152a1005b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60065416604051908152f35b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60005416604051908152f35b503461000e577f07d2c916c33b57e54689377381be3ef67a6a53c120daaf90e1e16f1645777e50610caa3661067f565b9073ffffffffffffffffffffffffffffffffffffffff610ccf816000541633146118ca565b81166000526003602052610d228260406000209073ffffffffffffffffffffffffffffffffffffffff167fffffffffffffffffffffffff0000000000000000000000000000000000000000825416179055565b6040805173ffffffffffffffffffffffffffffffffffffffff9283168152929091166020830152819081015b0390a1005b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57600435610d8f8161242f565b610dc281610dbd3373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b6109f6565b5090610e72610e2a610e04610deb855473ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff166000526001602052604060002090565b610e4e610deb600186015473ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b610e8d610e886004850154600386015490611b14565b611a95565b90600181019081548311610e9d57005b610f09610fab92610f0373ffffffffffffffffffffffffffffffffffffffff95610deb9460028a0190610ed282548254611acf565b8155610ef8610ef08460038554940190600052602052604060002090565b918254611acf565b905554925490611acf565b906119ce565b94610f9160006020610f77610f35610deb865473ffffffffffffffffffffffffffffffffffffffff1690565b6040517fa9059cbb000000000000000000000000000000000000000000000000000000008152336004820152602481018c905293849283919082906044820190565b03925af190811561100b575b600091610fdd575b506123a4565b5473ffffffffffffffffffffffffffffffffffffffff1690565b604051938452169133907f1aea12ef3450ec7749a467b47e7d800a7b493e4601d440ac5aebb94f747c122890602090a4005b610ffe915060203d8111611004575b610ff681836102c3565b810190611a0b565b38610f8b565b503d610fec565b611013611a23565b610f83565b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577fc1bcceddd77fdc95a8da9bec5802d2e0bb564dd02c0730222d8e12030bd91043602060043561109173ffffffffffffffffffffffffffffffffffffffff6000541633146118ca565b80600455604051908152a1005b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f3ab9db27a4cdd8c603a752b62d5fbd93b4b3509fe2596708e9688e42bbac35766004356110fb81610238565b6024359061110882610238565b73ffffffffffffffffffffffffffffffffffffffff9061112d826000541633146118ca565b6040517f70a082310000000000000000000000000000000000000000000000000000000081523060048201529291169060208084602481865afa938415611286575b60009461124d575b506040517fa9059cbb00000000000000000000000000000000000000000000000000000000815273ffffffffffffffffffffffffffffffffffffffff8316600482015260248101859052610d4e92916111eb91818160448160008a5af1918215611240575b600092611223575b50506125ea565b6040519384938491939290604091606084019573ffffffffffffffffffffffffffffffffffffffff8093168552602085015216910152565b6112399250803d1061100457610ff681836102c3565b38806111e4565b611248611a23565b6111dc565b8194506112766111eb91610d4e94933d881161127f575b61126e81836102c3565b810190611d30565b94919250611177565b503d611264565b61128e611a23565b61116f565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576020604051620f42408152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576103f760043561242f565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576020600454604051908152f35b6103119092919260c081019360a0809173ffffffffffffffffffffffffffffffffffffffff80825116855260208201511660208501526040810151604085015260608101516060850152608081015160808501520151910152565b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5761073a61144761144160a073ffffffffffffffffffffffffffffffffffffffff6004356113ff81610238565b60405161140b81610286565b600093818580935282602082015282604082015282606082015282608082015201521681526002602052604060243591206109f6565b5061264f565b60405191829182611348565b503461000e5773ffffffffffffffffffffffffffffffffffffffff60036105b061057a36610507565b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576004356114b881610238565b73ffffffffffffffffffffffffffffffffffffffff6114dc816000541633146118ca565b8116156114ec576103f79061192f565b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5760206040516117708152f35b503461000e5760807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e5761073a6004356115eb81610238565b6024356115f781610238565b604435606435907faf8bd3c5abe498e30aea149b38afa6e7d9bbe58c9129b38eff2912440734c6e273ffffffffffffffffffffffffffffffffffffffff93848616936116ae611691602061164b84886119ce565b6040517f23b872dd000000000000000000000000000000000000000000000000000000008152336004820152306024820152604481019190915291829081906064820190565b038160008b5af19081156118bd575b60009161189f575b50611a30565b6117aa6117086116de8773ffffffffffffffffffffffffffffffffffffffff166000526001602052604060002090565b97841680989073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b60018101805415611842575b5461176661172182611ae6565b9561174961172d610304565b73ffffffffffffffffffffffffffffffffffffffff909d168d52565b73ffffffffffffffffffffffffffffffffffffffff1660208c0152565b8660408b01528360608b01528460808b015260a08a0152611788868254611b14565b81556003611799610e888587611b14565b910190600052602052604060002090565b6117b5858254611b14565b90556118156117e43373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b54976118103373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b611b20565b60408051888152602081019590955284015260608301523391608090a46040519081529081906020820190565b61184f6143804304611a95565b81556040805173ffffffffffffffffffffffffffffffffffffffff8a811682528b1660208201527f1860ddfae81fa4edaec7accf480512d07263c8e909d5cdae84da78e098fc7b099190a1611714565b6118b7915060203d811161100457610ff681836102c3565b386116a8565b6118c5611a23565b6116a0565b156118d157565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b6000549073ffffffffffffffffffffffffffffffffffffffff80911691827fffffffffffffffffffffffff0000000000000000000000000000000000000000821617600055167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e06000604051a3565b507f4e487b7100000000000000000000000000000000000000000000000000000000600052601160045260246000fd5b807fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff048211811515166119ff570290565b611a0761199e565b0290565b9081602091031261000e5751801515810361000e5790565b506040513d6000823e3d90fd5b15611a3757565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601560248201527f4443413a204e6f7420656e6f7567682066756e647300000000000000000000006044820152fd5b7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff9060018110611ac3570190565b611acb61199e565b0190565b818110611ada570390565b611ae261199e565b0390565b6001907ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe8111611ac3570190565b81198111611ac3570190565b8054611b439168010000000000000000821015611c33575b6001820181556109f6565b919091611c0457805182547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff91821617835560059160a091611bdf90602083015116600186019073ffffffffffffffffffffffffffffffffffffffff167fffffffffffffffffffffffff0000000000000000000000000000000000000000825416179055565b6040810151600285015560608101516003850155608081015160048501550151910155565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052600060045260246000fd5b611c3b610256565b611b38565b15611c4757565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601360248201527f4443413a20496e76616c696420706572696f64000000000000000000000000006044820152fd5b15611cac57565b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602360248201527f4443413a20506572696f642063616e6e6f7420626520696e207468652066757460448201527f75726500000000000000000000000000000000000000000000000000000000006064820152fd5b9081602091031261000e575190565b15611d4657565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601360248201527f4443413a204f7261636c65206661696c757265000000000000000000000000006044820152fd5b6001907fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff8114611ac3570190565b8115611ddc570490565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052601260045260246000fd5b15611e1257565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601f60248201527f4443413a205472616e7366657220746f2053776170706572206661696c6564006044820152fd5b9391929095949573ffffffffffffffffffffffffffffffffffffffff809116855260209316838501526040840152606083015260a060808301528351908160a08401526000945b828610611f03575050601f817fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe09260c0959611611ef6575b0116010190565b6000858286010152611eef565b85810182015184870160c0015294810194611eb7565b15611f2057565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602060248201527f4443413a204e6f7420656e6f7567682062616c616e63652072657475726e65646044820152fd5b92906121df92946120a991611fdc81611fb78873ffffffffffffffffffffffffffffffffffffffff166000526001602052604060002090565b9073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b916001830190815491611ff88a611ff285611ae6565b14611c40565b61200861438043048b1115611ca5565b845494859161202f610deb60065473ffffffffffffffffffffffffffffffffffffffff1690565b946120398c6126ad565b612042886126ad565b604097885180809d81947f8c86f1e400000000000000000000000000000000000000000000000000000000835260209a8b976004850191939290604091606084019573ffffffffffffffffffffffffffffffffffffffff8093168552602085015216910152565b03915afa988915612397575b600099612374575b506120d2906120cd8a1515611d3f565b611da4565b90556120de8688611dd2565b60008c81526002830160205260409020556121116121098c6003840190600052602052604060002090565b548254611acf565b905582517f70a082310000000000000000000000000000000000000000000000000000000080825230600483015273ffffffffffffffffffffffffffffffffffffffff8681169b9299919291848b8e81806024810103915afa9a8b15612367575b60009b612348575b506121f96000868486169e8f8d8c519485809481937fa9059cbb0000000000000000000000000000000000000000000000000000000083528a600484016020909392919373ffffffffffffffffffffffffffffffffffffffff60408201951681520152565b03925af190811561233b575b60009161231e575b50611e0b565b16803b1561000e577f28c738dbec11a1bed94ba127a3712d54bcd39cf4ae95b6ebd671aaf10fd0287b998960008a82946122c79b836122849861226e6122b19d8f51988997889687957f2506c01800000000000000000000000000000000000000000000000000000000875260048701611e70565b03925af18015612311575b6122f8575b50611b14565b84519182523060048301529082816024818e5afa9283156122eb575b6000936122cc575b50501115611f19565b5191825260208201929092529081906040820190565b0390a4565b6122e3929350803d1061127f5761126e81836102c3565b9038806122a8565b6122f3611a23565b6122a0565b8061230561230b926102af565b80610406565b3861227e565b612319611a23565b612279565b6123359150873d891161100457610ff681836102c3565b386121f3565b612343611a23565b6121eb565b612360919b50853d871161127f5761126e81836102c3565b993861217a565b61236f611a23565b612172565b6120d291995061239090853d871161127f5761126e81836102c3565b98906120bd565b61239f611a23565b6120b5565b156123ab57565b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602160248201527f4443413a204e6f7420656e6f7567682066756e647320746f207769746864726160448201527f77000000000000000000000000000000000000000000000000000000000000006064820152fd5b61245d81610dbd3373ffffffffffffffffffffffffffffffffffffffff166000526002602052604060002090565b5090612483610e04610deb845473ffffffffffffffffffffffffffffffffffffffff1690565b60018301906124d36124ac610deb845473ffffffffffffffffffffffffffffffffffffffff1690565b80929073ffffffffffffffffffffffffffffffffffffffff16600052602052604060002090565b936124ea610e886004830154600384015490611b14565b9060009560058201916002806125008554611ae6565b93019101545b848311156125af57505050556040517fa9059cbb0000000000000000000000000000000000000000000000000000000081523360048201526024810185905273ffffffffffffffffffffffffffffffffffffffff9261257992610deb92610f919160209082908160008160448101610f77565b604051938452169133907fe6f9d2780c8923607fbb084350c15a1655c3fc682c989303c218a016a00324a09080602081016122c7565b9091976125dd6125e3916125d7846125d18d8890600052602052604060002090565b546119ce565b90611b14565b98611da4565b9190612506565b156125f157565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152601e60248201527f4443413a20456d657267656e6379207472616e73666572206661696c656400006044820152fd5b9060405161265c81610286565b60a06005829473ffffffffffffffffffffffffffffffffffffffff80825416855260018201541660208501526002810154604085015260038101546060850152600481015460808501520154910152565b73ffffffffffffffffffffffffffffffffffffffff818116600090815260036020526040902054169081156126e0575090565b90509056fea2646970667358221220655cfa975b7afa628570450e59ec0370c84c390dda42771139e70318712d360464736f6c634300080d0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 7,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 1042,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "swapOrders",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_address,t_mapping(t_address,t_struct(SwapOrder)1035_storage))"
+      },
+      {
+        "astId": 1048,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "orders",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_array(t_struct(UserOrder)1022_storage)dyn_storage)"
+      },
+      {
+        "astId": 1052,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "oracleAddresses",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_address)"
+      },
+      {
+        "astId": 1054,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "feeNumerator",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1056,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "beneficiary",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_address"
+      },
+      {
+        "astId": 1059,
+        "contract": "contracts/DCA.sol:DCA",
+        "label": "oracle",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_contract(Oracle)2011"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_struct(UserOrder)1022_storage)dyn_storage": {
+        "base": "t_struct(UserOrder)1022_storage",
+        "encoding": "dynamic_array",
+        "label": "struct DCA.UserOrder[]",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IERC20)860": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_contract(Oracle)2011": {
+        "encoding": "inplace",
+        "label": "contract Oracle",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_address)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      },
+      "t_mapping(t_address,t_array(t_struct(UserOrder)1022_storage)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct DCA.UserOrder[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_struct(UserOrder)1022_storage)dyn_storage"
+      },
+      "t_mapping(t_address,t_mapping(t_address,t_struct(SwapOrder)1035_storage))": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => mapping(address => struct DCA.SwapOrder))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_struct(SwapOrder)1035_storage)"
+      },
+      "t_mapping(t_address,t_struct(SwapOrder)1035_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct DCA.SwapOrder)",
+        "numberOfBytes": "32",
+        "value": "t_struct(SwapOrder)1035_storage"
+      },
+      "t_mapping(t_uint256,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_struct(SwapOrder)1035_storage": {
+        "encoding": "inplace",
+        "label": "struct DCA.SwapOrder",
+        "members": [
+          {
+            "astId": 1024,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "amountToSwap",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1026,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "lastPeriod",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1030,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "swapExchangeRates",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_mapping(t_uint256,t_uint256)"
+          },
+          {
+            "astId": 1034,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "amountsToReduce",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_mapping(t_uint256,t_uint256)"
+          }
+        ],
+        "numberOfBytes": "128"
+      },
+      "t_struct(UserOrder)1022_storage": {
+        "encoding": "inplace",
+        "label": "struct DCA.UserOrder",
+        "members": [
+          {
+            "astId": 1010,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "sellToken",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_contract(IERC20)860"
+          },
+          {
+            "astId": 1013,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "buyToken",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_contract(IERC20)860"
+          },
+          {
+            "astId": 1015,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "amountPerSwap",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1017,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "numberOfSwaps",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1019,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "startingPeriod",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1021,
+            "contract": "contracts/DCA.sol:DCA",
+            "label": "lastPeriodWithdrawal",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "192"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

@@ -9,5 +9,5 @@ cache
 artifacts
 
 dist
-
-
+deployments/mainnet/solcInputs/
+deployments/alfajores/solcInputs
