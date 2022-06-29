@@ -30,6 +30,10 @@ async function deployMockTokens() {
   };
 }
 
+async function goToNextPeriod() {
+  await mineNBlocks(17280);
+}
+
 describe("DCA", function () {
   let cUSD: Contract;
   let CELO: Contract;
@@ -37,6 +41,7 @@ describe("DCA", function () {
   let swapper: Contract;
 
   let DCA: Contract;
+  let DCAViewer: Contract;
 
   beforeEach(async () => {
     const mocks = await deployMockTokens();
@@ -50,10 +55,14 @@ describe("DCA", function () {
     const DCAFactory = await ethers.getContractFactory("DCA");
     DCA = await DCAFactory.deploy(oracle.address, beneficiary.address, 1000);
     await DCA.deployed();
+    const DCAViewerFactory = await ethers.getContractFactory("DCAViewer");
+    DCAViewer = await DCAViewerFactory.deploy();
+    await DCAViewer.deployed();
   });
 
   before(async () => {
-    await mineNBlocks(17280 * 2);
+    await goToNextPeriod();
+    await goToNextPeriod();
   });
 
   async function createOrder({
@@ -94,11 +103,16 @@ describe("DCA", function () {
     expect(createdOrders[0].startingPeriod).to.eq(2);
     expect(createdOrders[0].lastPeriodWithdrawal).to.eq(1);
 
-    const swapOrder = await DCA.swapOrders(cUSD.address, CELO.address);
-    expect(swapOrder.amountToSwap).to.eq(wei(10));
-    expect(swapOrder.lastPeriod).to.eq(1);
+    const swapState = await DCA.swapStates(cUSD.address, CELO.address);
+    expect(swapState.amountToSwap).to.eq(wei(10));
+    expect(swapState.lastSwapPeriod).to.eq(1);
     expect(
-      await DCA.getSwapOrderAmountToReduce(cUSD.address, CELO.address, 11)
+      await DCAViewer.getSwapStateAmountToReduce(
+        DCA.address,
+        cUSD.address,
+        CELO.address,
+        11
+      )
     ).to.eq(wei(10));
   });
 
@@ -120,11 +134,16 @@ describe("DCA", function () {
     const swappedAmount = wei(10).sub(fee).mul(2);
     expect(afterCelo).to.eq(beforeCelo.add(swappedAmount));
 
-    const swapOrder = await DCA.swapOrders(cUSD.address, CELO.address);
-    expect(swapOrder.amountToSwap).to.eq(wei(10));
-    expect(swapOrder.lastPeriod).to.eq(2);
+    const swapState = await DCA.swapStates(cUSD.address, CELO.address);
+    expect(swapState.amountToSwap).to.eq(wei(10));
+    expect(swapState.lastSwapPeriod).to.eq(2);
     expect(
-      await DCA.getSwapOrderExchangeRate(cUSD.address, CELO.address, 2)
+      await DCAViewer.getSwapStateExchangeRate(
+        DCA.address,
+        cUSD.address,
+        CELO.address,
+        2
+      )
     ).to.eq(wei(2));
 
     // Should not allow executing the same period again.
@@ -139,40 +158,118 @@ describe("DCA", function () {
     await awaitTx(
       DCA.executeOrder(cUSD.address, CELO.address, 2, swapper.address, [])
     );
-    let swapOrder = await DCA.swapOrders(cUSD.address, CELO.address);
-    expect(swapOrder.amountToSwap).to.eq(wei(10));
+    let swapState = await DCA.swapStates(cUSD.address, CELO.address);
+    expect(swapState.amountToSwap).to.eq(wei(10));
 
-    const exchangeRate = await DCA.getSwapOrderExchangeRate(
+    const exchangeRate = await DCAViewer.getSwapStateExchangeRate(
+      DCA.address,
       cUSD.address,
       CELO.address,
       2
     );
     expect(exchangeRate).to.eq(wei(2));
 
-    await mineNBlocks(17280);
+    await goToNextPeriod();
 
     await awaitTx(
       DCA.executeOrder(cUSD.address, CELO.address, 3, swapper.address, [])
     );
-    swapOrder = await DCA.swapOrders(cUSD.address, CELO.address);
-    expect(swapOrder.amountToSwap).to.eq(0);
+    swapState = await DCA.swapStates(cUSD.address, CELO.address);
+    expect(swapState.amountToSwap).to.eq(0);
   });
 
-  it.skip("should allow withdrawals", async () => {
+  it("should allow withdrawals", async () => {
     const [account] = await ethers.getSigners();
 
-    // Create order
-    await awaitTx(cUSD.approve(DCA.address, wei(100)));
+    const startingPeriod = await DCA.getCurrentPeriod();
+
+    await createOrder({ amountPerSwap: wei(1), numberOfSwaps: 2 });
+
     await awaitTx(
-      DCA.createOrder(cUSD.address, CELO.address, wei(100), wei(10), 12)
+      DCA.executeOrder(
+        cUSD.address,
+        CELO.address,
+        startingPeriod,
+        swapper.address,
+        []
+      )
     );
 
-    // Withdraw
-    await awaitTx(DCA.withdraw(0));
+    const beforeCelo = await CELO.balanceOf(account.address);
 
-    // Checks
-    expect(await cUSD.balanceOf(account.address)).to.eq(wei(1000));
-    const order = await DCA.getOrder(account.address, 0);
-    expect(order.spent).to.eq(wei(100));
+    await awaitTx(DCA.withdrawSwapped(0));
+
+    const afterCelo = await CELO.balanceOf(account.address);
+
+    const fee = wei(1).mul(1_000).div(1_000_000);
+    const swappedAmount = wei(1).sub(fee).mul(2);
+    expect(afterCelo).to.eq(beforeCelo.add(swappedAmount));
+
+    let order = await DCAViewer.getOrder(DCA.address, account.address, 0);
+    expect(order.lastPeriodWithdrawal).to.eq(startingPeriod);
+    const amountWithdrawn = await DCAViewer.calculateAmountWithdrawn(
+      DCA.address,
+      order
+    );
+    expect(amountWithdrawn).to.eq(swappedAmount);
+
+    // WITHDRAW ALL
+
+    expect(
+      await DCAViewer.getSwapStateAmountToReduce(
+        DCA.address,
+        cUSD.address,
+        CELO.address,
+        startingPeriod.add(1)
+      )
+    ).to.eq(wei(1));
+
+    const beforeCUSD = await cUSD.balanceOf(account.address);
+    await awaitTx(DCA.withdrawAll(0));
+
+    const afterCUSD = await cUSD.balanceOf(account.address);
+
+    expect(afterCUSD).to.eq(beforeCUSD.add(wei(1)));
+
+    order = await DCAViewer.getOrder(DCA.address, account.address, 0);
+    expect(order.lastPeriodWithdrawal).to.eq(startingPeriod.add(1));
+
+    const swapState = await DCA.swapStates(cUSD.address, CELO.address);
+    expect(swapState.amountToSwap).to.eq(0);
+
+    expect(
+      await DCAViewer.getSwapStateAmountToReduce(
+        DCA.address,
+        cUSD.address,
+        CELO.address,
+        startingPeriod.add(1)
+      )
+    ).to.eq(0);
+  });
+
+  it("uses reasonable amount of gas when withdrawing after doing DCA for 365 days", async () => {
+    const startingPeriod = await DCA.getCurrentPeriod();
+
+    await createOrder({ amountPerSwap: wei(1, 1000), numberOfSwaps: 365 });
+
+    for (let i = 0; i < 365; i++) {
+      await awaitTx(
+        DCA.executeOrder(
+          cUSD.address,
+          CELO.address,
+          startingPeriod.add(i),
+          swapper.address,
+          []
+        )
+      );
+      await goToNextPeriod();
+    }
+
+    const receipt = await awaitTx(DCA.withdrawSwapped(0));
+
+    // At current gas prices in Celo, this is equivalent to 0.1 CELO or $0.10.
+    // We will prevent longer periods than this from the UI.
+    // Also, withdrawing periodically will cause the gas cost to be lower.
+    expect(receipt.gasUsed).to.eq(2_719_185);
   });
 });

@@ -4,7 +4,7 @@ import { ethers } from "hardhat";
 
 export async function awaitTx(txPromise: Promise<ContractTransaction>) {
   const tx = await txPromise;
-  await tx.wait();
+  return await tx.wait();
 }
 
 const decimals = BigNumber.from(10).pow(18);
@@ -16,7 +16,5 @@ export function wei(value: number, divisor: number = 1) {
 }
 
 export async function mineNBlocks(n: number) {
-  for (let index = 0; index < n; index++) {
-    await ethers.provider.send("evm_mine", []);
-  }
+  await ethers.provider.send("hardhat_mine", [`0x${n.toString(16)}`]);
 }
