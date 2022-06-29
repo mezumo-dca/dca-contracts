@@ -1,13 +1,12 @@
 module.exports = async ({ getNamedAccounts, deployments }) => {
   const { deploy } = deployments;
   const { deployer } = await getNamedAccounts();
-  await deploy("SwapExecutor", {
+  await deploy("OracleWrapper", {
     from: deployer,
     args: [
-      "0xF35ed7156BABF2541E032B3bB8625210316e2832", // Swappa
-      "0x76efD61146049612A78Fa3e0E9BD0a8Febc9dCe0", // Beneficiary
+      "0x056d9AAC902cc2925BB31f6C516B1e1579c35df9", // Oracle
     ],
     log: true,
   });
 };
-module.exports.tags = ["SwapExecutor"];
+module.exports.tags = ["OracleWrapper"];

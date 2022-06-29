@@ -1,0 +1,333 @@
+{
+  "address": "0xF00979c09aC0c2e825d82480272cC91398e57cd6",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "contract Oracle",
+          "name": "_oracle",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "from",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        }
+      ],
+      "name": "OracleAddressMappingSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "oracle",
+          "type": "address"
+        }
+      ],
+      "name": "OracleSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_from",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_to",
+          "type": "address"
+        }
+      ],
+      "name": "addAddressMapping",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "tokenIn",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amountIn",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenOut",
+          "type": "address"
+        }
+      ],
+      "name": "consult",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amountOut",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "token",
+          "type": "address"
+        }
+      ],
+      "name": "getOracleTokenAddress",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "oracle",
+      "outputs": [
+        {
+          "internalType": "contract Oracle",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "oracleAddresses",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "contract Oracle",
+          "name": "_newOracle",
+          "type": "address"
+        }
+      ],
+      "name": "setOracle",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x2c7b2f83e18d63612f5b95740cf4223b22a8f37f8ead102623786deddd21db83",
+  "receipt": {
+    "to": null,
+    "from": "0xe59f139acBAB76d41623870F89f107d26Cf1E2B8",
+    "contractAddress": "0xF00979c09aC0c2e825d82480272cC91398e57cd6",
+    "transactionIndex": 4,
+    "gasUsed": "566635",
+    "logsBloom": "0x00000000000000000000000000000000000400000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000020000000000000000000800000000000000000000000000000000402000000000000000000000002000000000000000000000000004000000000000000000000000000080000040000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000020000200400000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x4fe674a138f6df3f7a0219a8708b9e6e692c0a684329f979f1d77adfdb399bf0",
+    "transactionHash": "0x2c7b2f83e18d63612f5b95740cf4223b22a8f37f8ead102623786deddd21db83",
+    "logs": [
+      {
+        "transactionIndex": 4,
+        "blockNumber": 13780808,
+        "transactionHash": "0x2c7b2f83e18d63612f5b95740cf4223b22a8f37f8ead102623786deddd21db83",
+        "address": "0xF00979c09aC0c2e825d82480272cC91398e57cd6",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000e59f139acbab76d41623870f89f107d26cf1e2b8"
+        ],
+        "data": "0x",
+        "logIndex": 40,
+        "blockHash": "0x4fe674a138f6df3f7a0219a8708b9e6e692c0a684329f979f1d77adfdb399bf0"
+      },
+      {
+        "transactionIndex": 4,
+        "blockNumber": 13780808,
+        "transactionHash": "0x2c7b2f83e18d63612f5b95740cf4223b22a8f37f8ead102623786deddd21db83",
+        "address": "0xF00979c09aC0c2e825d82480272cC91398e57cd6",
+        "topics": [
+          "0x3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa"
+        ],
+        "data": "0x000000000000000000000000056d9aac902cc2925bb31f6c516b1e1579c35df9",
+        "logIndex": 41,
+        "blockHash": "0x4fe674a138f6df3f7a0219a8708b9e6e692c0a684329f979f1d77adfdb399bf0"
+      }
+    ],
+    "blockNumber": 13780808,
+    "cumulativeGasUsed": "1998537",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x056d9AAC902cc2925BB31f6C516B1e1579c35df9"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "109aa8e1c7d6e2f21b38b6db3a6b47a3",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.13+commit.abaa5c0e\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"contract Oracle\",\"name\":\"_oracle\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"OracleAddressMappingSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oracle\",\"type\":\"address\"}],\"name\":\"OracleSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_to\",\"type\":\"address\"}],\"name\":\"addAddressMapping\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"tokenIn\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountIn\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"tokenOut\",\"type\":\"address\"}],\"name\":\"consult\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amountOut\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"getOracleTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"oracle\",\"outputs\":[{\"internalType\":\"contract Oracle\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"oracleAddresses\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contract Oracle\",\"name\":\"_newOracle\",\"type\":\"address\"}],\"name\":\"setOracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"oracleAddresses(address)\":{\"notice\":\"Mapping from address to swap to address to use in the oracle. For cUSD, we need to use mcUSD in the oracle because of Ubeswap liquidity. Same with cEUR/cREAL.\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/OracleWrapper.sol\":\"OracleWrapper\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":999999},\"remappings\":[],\"viaIR\":true},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (access/Ownable.sol)\\n\\npragma solidity ^0.8.0;\\n\\nimport \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * By default, the owner account will be the one that deploys the contract. This\\n * can later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the deployer as the initial owner.\\n     */\\n    constructor() {\\n        _transferOwnership(_msgSender());\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        require(owner() == _msgSender(), \\\"Ownable: caller is not the owner\\\");\\n        _;\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions anymore. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby removing any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        require(newOwner != address(0), \\\"Ownable: new owner is the zero address\\\");\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0x24e0364e503a9bbde94c715d26573a76f14cd2a202d45f96f52134ab806b67b9\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts v4.4.1 (utils/Context.sol)\\n\\npragma solidity ^0.8.0;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n}\\n\",\"keccak256\":\"0xe2e337e6dde9ef6b680e07338c493ebea1b5fd09b43424112868e9cc1706bca7\",\"license\":\"MIT\"},\"contracts/OracleWrapper.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\nimport \\\"./interfaces/IOracle.sol\\\";\\n\\ncontract OracleWrapper is Ownable, Oracle {\\n    event OracleSet(address oracle);\\n    event OracleAddressMappingSet(address from, address to);\\n\\n    Oracle public oracle;\\n\\n    /// Mapping from address to swap to address to use in the oracle.\\n    /// For cUSD, we need to use mcUSD in the oracle because of Ubeswap liquidity. Same with cEUR/cREAL.\\n    mapping(address => address) public oracleAddresses;\\n\\n    constructor(Oracle _oracle) {\\n        setOracle(_oracle);\\n    }\\n\\n    function setOracle(Oracle _newOracle) public onlyOwner {\\n        oracle = _newOracle;\\n        emit OracleSet(address(oracle));\\n    }\\n\\n    function consult(\\n        address tokenIn,\\n        uint256 amountIn,\\n        address tokenOut\\n    ) external view returns (uint256 amountOut) {\\n        amountOut = oracle.consult(\\n            getOracleTokenAddress(tokenIn),\\n            amountIn,\\n            getOracleTokenAddress(tokenOut)\\n        );\\n    }\\n\\n    function addAddressMapping(address _from, address _to) external onlyOwner {\\n        oracleAddresses[_from] = _to;\\n        emit OracleAddressMappingSet(_from, _to);\\n    }\\n\\n    function getOracleTokenAddress(address token)\\n        public\\n        view\\n        returns (address)\\n    {\\n        address mappedToken = oracleAddresses[token];\\n        if (mappedToken != address(0)) {\\n            return mappedToken;\\n        } else {\\n            return token;\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x9d5a56cb87f99745569434f1f0901f2ee2e045f605a70e3a1bbd070882eb3de6\",\"license\":\"MIT\"},\"contracts/interfaces/IOracle.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\npragma solidity ^0.8.0;\\n\\ninterface Oracle {\\n    function consult(\\n        address tokenIn,\\n        uint256 amountIn,\\n        address tokenOut\\n    ) external view returns (uint256 amountOut);\\n}\\n\",\"keccak256\":\"0x00808b842e95a6c63365936c05d804d5f82a752b6541b95b5c8763b56eb78142\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x60803461006757601f61097b38819003918201601f19168301916001600160401b0383118484101761006c5780849260209460405283398101031261006757516001600160a01b03811681036100675761005890610082565b60405161087590816101068239f35b600080fd5b634e487b7160e01b600052604160045260246000fd5b600080546001600160a01b03198082163390811784556040517f3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa9560209591946001600160a01b03939192908416907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e09087a316809160015416176001558152a156fe60806040526004361015610013575b600080fd5b60003560e01c806337e5724b146100c7578063715018a6146100be57806371eb125e146100b55780637adbf973146100ac5780637dc0d1d0146100a35780638c86f1e41461009a5780638da5cb5b146100915780638ff9b843146100885763f2fde38b1461008057600080fd5b61000e6105b1565b5061000e6104d9565b5061000e610486565b5061000e610367565b5061000e610314565b5061000e61025c565b5061000e6101f0565b5061000e610148565b3461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602061010c6004356101078161012a565b610807565b73ffffffffffffffffffffffffffffffffffffffff60405191168152f35b73ffffffffffffffffffffffffffffffffffffffff81160361000e57565b503461000e576000807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc3601126101ed5780547fffffffffffffffffffffffff000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff8216916101bf3384146106a7565b16825581604051917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08284a3f35b80fd5b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602060043561022e8161012a565b73ffffffffffffffffffffffffffffffffffffffff8091166000526002825260406000205416604051908152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa60206004356102bb8161012a565b73ffffffffffffffffffffffffffffffffffffffff906102e0826000541633146106a7565b16807fffffffffffffffffffffffff00000000000000000000000000000000000000006001541617600155604051908152a1005b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60015416604051908152f35b503461000e5760607ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576104476004356103a68161012a565b60206044356103b48161012a565b606473ffffffffffffffffffffffffffffffffffffffff916103e36103dd846001541696610807565b91610807565b948360405196879586947f8c86f1e400000000000000000000000000000000000000000000000000000000865216600485015260243560248501521660448301525afa908115610479575b60009161044b575b506040519081529081906020820190565b0390f35b61046c915060203d8111610472575b610464818361077b565b8101906107eb565b38610436565b503d61045a565b6104816107fa565b61042e565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60005416604051908152f35b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f07d2c916c33b57e54689377381be3ef67a6a53c120daaf90e1e16f1645777e5060406004356105388161012a565b6024356105448161012a565b73ffffffffffffffffffffffffffffffffffffffff809261056a826000541633146106a7565b169182600052600260205283600020911690817fffffffffffffffffffffffff000000000000000000000000000000000000000082541617905582519182526020820152a1005b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576004356105ed8161012a565b73ffffffffffffffffffffffffffffffffffffffff610611816000541633146106a7565b811615610623576106219061070c565b005b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b156106ae57565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b6000549073ffffffffffffffffffffffffffffffffffffffff80911691827fffffffffffffffffffffffff0000000000000000000000000000000000000000821617600055167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e06000604051a3565b90601f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0910116810190811067ffffffffffffffff8211176107bc57604052565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b9081602091031261000e575190565b506040513d6000823e3d90fd5b73ffffffffffffffffffffffffffffffffffffffff8181166000908152600260205260409020541690811561083a575090565b90509056fea264697066735822122024d43c7932e6cae982e0f795b1201eb4881e51fc54f2ddbf6696590f4010ff3764736f6c634300080d0033",
+  "deployedBytecode": "0x60806040526004361015610013575b600080fd5b60003560e01c806337e5724b146100c7578063715018a6146100be57806371eb125e146100b55780637adbf973146100ac5780637dc0d1d0146100a35780638c86f1e41461009a5780638da5cb5b146100915780638ff9b843146100885763f2fde38b1461008057600080fd5b61000e6105b1565b5061000e6104d9565b5061000e610486565b5061000e610367565b5061000e610314565b5061000e61025c565b5061000e6101f0565b5061000e610148565b3461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602061010c6004356101078161012a565b610807565b73ffffffffffffffffffffffffffffffffffffffff60405191168152f35b73ffffffffffffffffffffffffffffffffffffffff81160361000e57565b503461000e576000807ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc3601126101ed5780547fffffffffffffffffffffffff000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff8216916101bf3384146106a7565b16825581604051917f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08284a3f35b80fd5b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602060043561022e8161012a565b73ffffffffffffffffffffffffffffffffffffffff8091166000526002825260406000205416604051908152f35b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f3f32684a32a11dabdbb8c0177de80aa3ae36a004d75210335b49e544e48cd0aa60206004356102bb8161012a565b73ffffffffffffffffffffffffffffffffffffffff906102e0826000541633146106a7565b16807fffffffffffffffffffffffff00000000000000000000000000000000000000006001541617600155604051908152a1005b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60015416604051908152f35b503461000e5760607ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576104476004356103a68161012a565b60206044356103b48161012a565b606473ffffffffffffffffffffffffffffffffffffffff916103e36103dd846001541696610807565b91610807565b948360405196879586947f8c86f1e400000000000000000000000000000000000000000000000000000000865216600485015260243560248501521660448301525afa908115610479575b60009161044b575b506040519081529081906020820190565b0390f35b61046c915060203d8111610472575b610464818361077b565b8101906107eb565b38610436565b503d61045a565b6104816107fa565b61042e565b503461000e5760007ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e57602073ffffffffffffffffffffffffffffffffffffffff60005416604051908152f35b503461000e5760407ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e577f07d2c916c33b57e54689377381be3ef67a6a53c120daaf90e1e16f1645777e5060406004356105388161012a565b6024356105448161012a565b73ffffffffffffffffffffffffffffffffffffffff809261056a826000541633146106a7565b169182600052600260205283600020911690817fffffffffffffffffffffffff000000000000000000000000000000000000000082541617905582519182526020820152a1005b503461000e5760207ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc36011261000e576004356105ed8161012a565b73ffffffffffffffffffffffffffffffffffffffff610611816000541633146106a7565b811615610623576106219061070c565b005b60846040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602660248201527f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160448201527f64647265737300000000000000000000000000000000000000000000000000006064820152fd5b156106ae57565b60646040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602060248201527f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726044820152fd5b6000549073ffffffffffffffffffffffffffffffffffffffff80911691827fffffffffffffffffffffffff0000000000000000000000000000000000000000821617600055167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e06000604051a3565b90601f7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0910116810190811067ffffffffffffffff8211176107bc57604052565b7f4e487b7100000000000000000000000000000000000000000000000000000000600052604160045260246000fd5b9081602091031261000e575190565b506040513d6000823e3d90fd5b73ffffffffffffffffffffffffffffffffffffffff8181166000908152600260205260409020541690811561083a575090565b90509056fea264697066735822122024d43c7932e6cae982e0f795b1201eb4881e51fc54f2ddbf6696590f4010ff3764736f6c634300080d0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "oracleAddresses(address)": {
+        "notice": "Mapping from address to swap to address to use in the oracle. For cUSD, we need to use mcUSD in the oracle because of Ubeswap liquidity. Same with cEUR/cREAL."
+      }
+    },
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 7,
+        "contract": "contracts/OracleWrapper.sol:OracleWrapper",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 2372,
+        "contract": "contracts/OracleWrapper.sol:OracleWrapper",
+        "label": "oracle",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_contract(Oracle)2720"
+      },
+      {
+        "astId": 2377,
+        "contract": "contracts/OracleWrapper.sol:OracleWrapper",
+        "label": "oracleAddresses",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_address)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_contract(Oracle)2720": {
+        "encoding": "inplace",
+        "label": "contract Oracle",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_address)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      }
+    }
+  }
+}

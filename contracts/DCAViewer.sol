@@ -25,7 +25,7 @@ contract DCAViewer is Ownable {
                 period
             );
             uint256 periodWithdrawAmount = (periodSwapState.exchangeRate *
-                order.amountPerSwap) / 1e18;
+                order.amountPerSwap) / 1e27;
             uint256 fee = (periodWithdrawAmount *
                 periodSwapState.feeNumerator) / dca.FEE_DENOMINATOR();
             amountWithdrawn += periodWithdrawAmount - fee;

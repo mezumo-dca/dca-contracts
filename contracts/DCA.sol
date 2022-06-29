@@ -239,7 +239,7 @@ contract DCA is Ownable {
 
         swapState.lastSwapPeriod++;
         swapState.amountToSwap -= periodSwapState.amountToReduce;
-        periodSwapState.exchangeRate = (requiredAmount * 1e18) / swapAmount;
+        periodSwapState.exchangeRate = (requiredAmount * 1e27) / swapAmount;
         periodSwapState.feeNumerator = feeNumerator;
 
         require(
@@ -339,7 +339,7 @@ contract DCA is Ownable {
         guardrailsOn = false;
     }
 
-    /// In case of emergency, in hte beginning the owner can remove the funds to return them to users.
+    /// In case of emergency, in the beginning the owner can remove the funds to return them to users.
     /// Should be turned off before receiving any meaningful deposits by calling |turnOffGuardrails|.
     function emergencyWithdrawal(IERC20 token, address to) external onlyOwner {
         require(guardrailsOn, "DCA: Guardrails are off");
@@ -402,7 +402,7 @@ contract DCA is Ownable {
                 address(order.sellToken)
             ][address(order.buyToken)][period];
             uint256 periodSwapAmount = (periodSwapState.exchangeRate *
-                order.amountPerSwap) / 1e18;
+                order.amountPerSwap) / 1e27;
             uint256 fee = (periodSwapAmount * periodSwapState.feeNumerator) /
                 FEE_DENOMINATOR;
             amountToWithdraw += periodSwapAmount - fee;

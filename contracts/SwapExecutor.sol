@@ -10,16 +10,10 @@ import "./DCA.sol";
 contract SwapExecutor is ISwapper, Ownable {
     event BeneficiarySet(address newBeneficiary);
 
-    DCA private dca;
     ISwappaRouterV1 private swappaRouter;
     address public beneficiary;
 
-    constructor(
-        DCA _dca,
-        ISwappaRouterV1 _swappaRouter,
-        address _beneficiary
-    ) {
-        dca = _dca;
+    constructor(ISwappaRouterV1 _swappaRouter, address _beneficiary) {
         swappaRouter = _swappaRouter;
         setBeneficiary(_beneficiary);
     }
@@ -30,6 +24,7 @@ contract SwapExecutor is ISwapper, Ownable {
     }
 
     function executeMezumoSwap(
+        DCA dca,
         uint256 period,
         address[] calldata path,
         address[] calldata pairs,
@@ -73,7 +68,7 @@ contract SwapExecutor is ISwapper, Ownable {
         );
 
         require(
-            IERC20(_buyToken).transfer(address(dca), _outAmount),
+            IERC20(_buyToken).transfer(msg.sender, _outAmount),
             "SwapExecutor: Transfer to DCA failed"
         );
         require(
