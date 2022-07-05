@@ -78,6 +78,10 @@ contract SwapExecutor is ISwapper, Ownable {
             ),
             "SwapExecutor: Transfer to DCA failed"
         );
+        uint256 sellTokenBalance = IERC20(_sellToken).balanceOf(msg.sender);
+        if (sellTokenBalance > 0) {
+            IERC20(_sellToken).transfer(msg.sender, sellTokenBalance);
+        }
     }
 
     function emergency(IERC20 token) external {

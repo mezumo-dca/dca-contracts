@@ -57,7 +57,10 @@ contract DCA is Ownable {
     event OracleUpdaterChanged(address oracleUpdater);
     event OracleSet(address oracle);
     event BeneficiarySet(address newBeneficiary);
-    event FeeNumeratorSet(uint256 feeNumerator);
+    event UpdateFeeNumerators(
+        uint256 protocolFeeNumerator,
+        uint256 swapperFeeNumerator
+    );
 
     /// Contains information about one specific user order.
     /// A period is defined as a block number divided by |BLOCKS_PER_DAY|.
@@ -98,8 +101,10 @@ contract DCA is Ownable {
     /// A list of |UserOrder| for each user address.
     mapping(address => UserOrder[]) public orders;
 
-    /// Active fee on swaps. To be used together with |FEE_DENOMINATOR|.
-    uint256 public feeNumerator;
+    /// Active fees on swaps. To be used together with |FEE_DENOMINATOR|.
+    /// Protocol fee is taken by the project treasury and swapper fee is taken by swappers.
+    uint256 public protocolFeeNumerator;
+    uint256 public swapperFeeNumerator;
     /// Where to send the fees.
     address public beneficiary;
     /// Oracle to use to get the amount to receive on swaps.
@@ -123,13 +128,14 @@ contract DCA is Ownable {
     constructor(
         Oracle _oracle,
         address _beneficiary,
-        uint256 initialFee
+        uint256 initialProtocolFee,
+        uint256 initialSwapperFee
     ) {
         guardrailsOn = true;
         oracleUpdater = msg.sender;
         setOracle(_oracle);
         setBeneficiary(_beneficiary);
-        setFeeNumerator(initialFee);
+        setFeeNumerators(initialProtocolFee, initialSwapperFee);
     }
 
     /// Starts a new DCA position for the |msg.sender|. When creating a new position, we
@@ -223,8 +229,11 @@ contract DCA is Ownable {
             _period <= getCurrentPeriod(),
             "DCA: Period cannot be in the future"
         );
-        uint256 fee = (swapState.amountToSwap * feeNumerator) / FEE_DENOMINATOR;
-        uint256 swapAmount = swapState.amountToSwap - fee;
+        uint256 protocolFee = (swapState.amountToSwap * protocolFeeNumerator) /
+            FEE_DENOMINATOR;
+        uint256 swapperFee = (swapState.amountToSwap * swapperFeeNumerator) /
+            FEE_DENOMINATOR;
+        uint256 swapAmount = swapState.amountToSwap - protocolFee - swapperFee;
 
         uint256 requiredAmount = oracle.consult(
             _sellToken,
@@ -240,16 +249,16 @@ contract DCA is Ownable {
         swapState.lastSwapPeriod++;
         swapState.amountToSwap -= periodSwapState.amountToReduce;
         periodSwapState.exchangeRate = (requiredAmount * 1e27) / swapAmount;
-        periodSwapState.feeNumerator = feeNumerator;
+        periodSwapState.feeNumerator = protocolFeeNumerator + swapperFeeNumerator;
 
         require(
-            IERC20(_sellToken).transfer(beneficiary, fee),
+            IERC20(_sellToken).transfer(beneficiary, protocolFee),
             "DCA: Fee transfer to beneficiary failed"
         );
 
         uint256 balanceBefore = IERC20(_buyToken).balanceOf(address(this));
         require(
-            IERC20(_sellToken).transfer(_swapper, swapAmount),
+            IERC20(_sellToken).transfer(_swapper, swapAmount + swapperFee),
             "DCA: Transfer to Swapper failed"
         );
         ISwapper(_swapper).swap(
@@ -369,11 +378,18 @@ contract DCA is Ownable {
         emit BeneficiarySet(_beneficiary);
     }
 
-    /// Update the fee
-    function setFeeNumerator(uint256 _feeNumerator) public onlyOwner {
-        require(_feeNumerator <= MAX_FEE_NUMERATOR, "DCA: Fee too high");
-        feeNumerator = _feeNumerator;
-        emit FeeNumeratorSet(_feeNumerator);
+    /// Update the fees
+    function setFeeNumerators(
+        uint256 _protocolFeeNumerator,
+        uint256 _swapperFeeNumerator
+    ) public onlyOwner {
+        require(
+            _protocolFeeNumerator + _swapperFeeNumerator <= MAX_FEE_NUMERATOR,
+            "DCA: Fee too high"
+        );
+        protocolFeeNumerator = _protocolFeeNumerator;
+        swapperFeeNumerator = _swapperFeeNumerator;
+        emit UpdateFeeNumerators(_protocolFeeNumerator, _swapperFeeNumerator);
     }
 
     // From here to the bottom of the file are the view calls.

@@ -53,7 +53,7 @@ describe("DCA", function () {
     const [, beneficiary] = await ethers.getSigners();
 
     const DCAFactory = await ethers.getContractFactory("DCA");
-    DCA = await DCAFactory.deploy(oracle.address, beneficiary.address, 1000);
+    DCA = await DCAFactory.deploy(oracle.address, beneficiary.address, 1000, 0);
     await DCA.deployed();
     const DCAViewerFactory = await ethers.getContractFactory("DCAViewer");
     DCAViewer = await DCAViewerFactory.deploy();
@@ -144,7 +144,7 @@ describe("DCA", function () {
         CELO.address,
         2
       )
-    ).to.eq(wei(2));
+    ).to.eq(wei(2e9));
 
     // Should not allow executing the same period again.
     await expect(
@@ -167,7 +167,7 @@ describe("DCA", function () {
       CELO.address,
       2
     );
-    expect(exchangeRate).to.eq(wei(2));
+    expect(exchangeRate).to.eq(wei(2e9));
 
     await goToNextPeriod();
 
@@ -270,6 +270,6 @@ describe("DCA", function () {
     // At current gas prices in Celo, this is equivalent to 0.1 CELO or $0.10.
     // We will prevent longer periods than this from the UI.
     // Also, withdrawing periodically will cause the gas cost to be lower.
-    expect(receipt.gasUsed).to.eq(2_719_185);
+    expect(receipt.gasUsed).to.eq(2_719_207);
   });
 });
