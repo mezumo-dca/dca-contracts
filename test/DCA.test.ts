@@ -53,7 +53,12 @@ describe("DCA", function () {
     const [, beneficiary] = await ethers.getSigners();
 
     const DCAFactory = await ethers.getContractFactory("DCA");
-    DCA = await DCAFactory.deploy(oracle.address, beneficiary.address, 1000, 0);
+    DCA = await DCAFactory.deploy(
+      oracle.address,
+      beneficiary.address,
+      1000,
+      100
+    );
     await DCA.deployed();
     const DCAViewerFactory = await ethers.getContractFactory("DCAViewer");
     DCAViewer = await DCAViewerFactory.deploy();
@@ -117,10 +122,13 @@ describe("DCA", function () {
   });
 
   it("should execute orders", async () => {
+    const [, beneficiary] = await ethers.getSigners();
+
     await createOrder({});
 
     const beforeCusd = await cUSD.balanceOf(DCA.address);
     const beforeCelo = await CELO.balanceOf(DCA.address);
+    const beforeBeneficiaryCusd = await cUSD.balanceOf(beneficiary.address);
 
     await awaitTx(
       DCA.executeOrder(cUSD.address, CELO.address, 2, swapper.address, [])
@@ -128,11 +136,13 @@ describe("DCA", function () {
 
     const afterCusd = await cUSD.balanceOf(DCA.address);
     const afterCelo = await CELO.balanceOf(DCA.address);
+    const afterBeneficiaryCusd = await cUSD.balanceOf(beneficiary.address);
 
     expect(afterCusd).to.eq(beforeCusd.sub(wei(10)));
     const fee = wei(10).mul(1_000).div(1_000_000);
     const swappedAmount = wei(10).sub(fee).mul(2);
     expect(afterCelo).to.eq(beforeCelo.add(swappedAmount));
+    expect(afterBeneficiaryCusd).to.eq(beforeBeneficiaryCusd.add(fee))
 
     const swapState = await DCA.swapStates(cUSD.address, CELO.address);
     expect(swapState.amountToSwap).to.eq(wei(10));
@@ -197,7 +207,7 @@ describe("DCA", function () {
 
     const beforeCelo = await CELO.balanceOf(account.address);
 
-    await awaitTx(DCA.withdrawSwapped(0));
+    await awaitTx(DCA.withdrawSwapped(account.address, 0));
 
     const afterCelo = await CELO.balanceOf(account.address);
 
@@ -248,6 +258,7 @@ describe("DCA", function () {
   });
 
   it("uses reasonable amount of gas when withdrawing after doing DCA for 365 days", async () => {
+    const [account] = await ethers.getSigners();
     const startingPeriod = await DCA.getCurrentPeriod();
 
     await createOrder({ amountPerSwap: wei(1, 1000), numberOfSwaps: 365 });
@@ -265,11 +276,11 @@ describe("DCA", function () {
       await goToNextPeriod();
     }
 
-    const receipt = await awaitTx(DCA.withdrawSwapped(0));
+    const receipt = await awaitTx(DCA.withdrawSwapped(account.address, 0));
 
     // At current gas prices in Celo, this is equivalent to 0.1 CELO or $0.10.
     // We will prevent longer periods than this from the UI.
     // Also, withdrawing periodically will cause the gas cost to be lower.
-    expect(receipt.gasUsed).to.eq(2_719_207);
+    expect(receipt.gasUsed).to.eq(2_719_245);
   });
 });

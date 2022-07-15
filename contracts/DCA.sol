@@ -57,10 +57,7 @@ contract DCA is Ownable {
     event OracleUpdaterChanged(address oracleUpdater);
     event OracleSet(address oracle);
     event BeneficiarySet(address newBeneficiary);
-    event UpdateFeeNumerators(
-        uint256 protocolFeeNumerator,
-        uint256 swapperFeeNumerator
-    );
+    event UpdateFeeNumerator(uint256 feeNumerator, uint256 protocolFeePercent);
 
     /// Contains information about one specific user order.
     /// A period is defined as a block number divided by |BLOCKS_PER_DAY|.
@@ -102,9 +99,9 @@ contract DCA is Ownable {
     mapping(address => UserOrder[]) public orders;
 
     /// Active fees on swaps. To be used together with |FEE_DENOMINATOR|.
-    /// Protocol fee is taken by the project treasury and swapper fee is taken by swappers.
-    uint256 public protocolFeeNumerator;
-    uint256 public swapperFeeNumerator;
+    uint256 public feeNumerator;
+    /// |protocolFeeNumerator| / 100 of the fee will be sent to the treasury and the rest to the swapper.
+    uint256 public protocolFeePercent;
     /// Where to send the fees.
     address public beneficiary;
     /// Oracle to use to get the amount to receive on swaps.
@@ -128,14 +125,14 @@ contract DCA is Ownable {
     constructor(
         Oracle _oracle,
         address _beneficiary,
-        uint256 initialProtocolFee,
-        uint256 initialSwapperFee
+        uint256 initialFeeNumerator,
+        uint256 initialProtocolFeePercent
     ) {
         guardrailsOn = true;
         oracleUpdater = msg.sender;
         setOracle(_oracle);
         setBeneficiary(_beneficiary);
-        setFeeNumerators(initialProtocolFee, initialSwapperFee);
+        setFeeNumerator(initialFeeNumerator, initialProtocolFeePercent);
     }
 
     /// Starts a new DCA position for the |msg.sender|. When creating a new position, we
@@ -229,10 +226,10 @@ contract DCA is Ownable {
             _period <= getCurrentPeriod(),
             "DCA: Period cannot be in the future"
         );
-        uint256 protocolFee = (swapState.amountToSwap * protocolFeeNumerator) /
+        uint256 totalFee = (swapState.amountToSwap * feeNumerator) /
             FEE_DENOMINATOR;
-        uint256 swapperFee = (swapState.amountToSwap * swapperFeeNumerator) /
-            FEE_DENOMINATOR;
+        uint256 protocolFee = (totalFee * protocolFeePercent) / 100;
+        uint256 swapperFee = totalFee - protocolFee;
         uint256 swapAmount = swapState.amountToSwap - protocolFee - swapperFee;
 
         uint256 requiredAmount = oracle.consult(
@@ -249,7 +246,7 @@ contract DCA is Ownable {
         swapState.lastSwapPeriod++;
         swapState.amountToSwap -= periodSwapState.amountToReduce;
         periodSwapState.exchangeRate = (requiredAmount * 1e27) / swapAmount;
-        periodSwapState.feeNumerator = protocolFeeNumerator + swapperFeeNumerator;
+        periodSwapState.feeNumerator = feeNumerator;
 
         require(
             IERC20(_sellToken).transfer(beneficiary, protocolFee),
@@ -283,10 +280,11 @@ contract DCA is Ownable {
         );
     }
 
-    /// Withdraw the funds that were already swapped for the caller user.
-    /// @param index the index of the |orders| array for msg.sender.
-    function withdrawSwapped(uint256 index) public {
-        UserOrder storage order = orders[msg.sender][index];
+    /// Withdraw the funds that were already swapped.
+    /// @param userAddress the user to withdraw for.
+    /// @param index the index of the |orders| array for |userAddress|.
+    function withdrawSwapped(address userAddress, uint256 index) public {
+        UserOrder storage order = orders[userAddress][index];
         (
             uint256 amountToWithdraw,
             uint256 finalPeriod
@@ -294,12 +292,12 @@ contract DCA is Ownable {
         order.lastPeriodWithdrawal = finalPeriod;
 
         require(
-            order.buyToken.transfer(msg.sender, amountToWithdraw),
+            order.buyToken.transfer(userAddress, amountToWithdraw),
             "DCA: Not enough funds to withdraw"
         );
 
         emit SwappedWithdrawal(
-            msg.sender,
+            userAddress,
             index,
             address(order.buyToken),
             amountToWithdraw
@@ -310,7 +308,7 @@ contract DCA is Ownable {
     /// funds that were not swapped yet, effectively terminating the position.
     /// @param index the index of the |orders| array for msg.sender.
     function withdrawAll(uint256 index) external {
-        withdrawSwapped(index);
+        withdrawSwapped(msg.sender, index);
 
         UserOrder storage order = orders[msg.sender][index];
         SwapState storage swapState = swapStates[address(order.sellToken)][
@@ -378,18 +376,15 @@ contract DCA is Ownable {
         emit BeneficiarySet(_beneficiary);
     }
 
-    /// Update the fees
-    function setFeeNumerators(
-        uint256 _protocolFeeNumerator,
-        uint256 _swapperFeeNumerator
-    ) public onlyOwner {
-        require(
-            _protocolFeeNumerator + _swapperFeeNumerator <= MAX_FEE_NUMERATOR,
-            "DCA: Fee too high"
-        );
-        protocolFeeNumerator = _protocolFeeNumerator;
-        swapperFeeNumerator = _swapperFeeNumerator;
-        emit UpdateFeeNumerators(_protocolFeeNumerator, _swapperFeeNumerator);
+    /// Update the fee
+    function setFeeNumerator(uint256 _feeNumerator, uint256 _protocolFeePercent)
+        public
+        onlyOwner
+    {
+        require(_feeNumerator <= MAX_FEE_NUMERATOR, "DCA: Fee too high");
+        feeNumerator = _feeNumerator;
+        protocolFeePercent = _protocolFeePercent;
+        emit UpdateFeeNumerator(feeNumerator, protocolFeePercent);
     }
 
     // From here to the bottom of the file are the view calls.
@@ -435,6 +430,14 @@ contract DCA is Ownable {
         returns (UserOrder[] memory)
     {
         return orders[userAddress];
+    }
+
+    function getUserOrder(address userAddress, uint256 index)
+        external
+        view
+        returns (UserOrder memory)
+    {
+        return orders[userAddress][index];
     }
 
     function getSwapState(address sellToken, address buyToken)

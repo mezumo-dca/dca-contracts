@@ -107,8 +107,7 @@ async function emergencyWithdraw() {
 }
 
 async function main() {
-  await emergencyWithdraw();
-
+  // await emergencyWithdraw();
   // await printExchangeRate();
 }
 

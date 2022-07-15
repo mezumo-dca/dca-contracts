@@ -57,7 +57,7 @@ contract SwapExecutor is ISwapper, Ownable {
             IERC20(_sellToken).approve(address(swappaRouter), _inAmount),
             "SwapExecutor: Approval to Swappa failed"
         );
-        swappaRouter.swapExactInputForOutput(
+        swappaRouter.swapExactInputForOutputWithPrecheck(
             path,
             pairs,
             extras,
